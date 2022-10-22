@@ -7,6 +7,7 @@ public class Fleet {
 
     //translator
     public boolean validatePositions(String pShipType, Position pFirstPosition, Position pSecondPosition) {
+        //TODO
         if (pFirstPosition == pSecondPosition) {
             System.out.println("You can not enter the same position twice!");
             return false;
@@ -22,17 +23,20 @@ public class Fleet {
 
         for (int i = 0; i < 10; i++) {
             System.out.println("Please enter " + shipTypes[i] + " position...");
-            Position firstPosition = new Position(sc.next());
-            Position secondPosition = new Position(sc.next());
+            Position startPosition = new Position(sc.next());
+            Position endPosition = new Position(sc.next());
 
-            if (validatePositions(shipTypes[i], firstPosition,secondPosition)) {
-                System.out.println("Congrats!");
+
+            if (validatePositions(shipTypes[i], startPosition, endPosition)) {
+                System.out.println("Good choice!");
             }
 
+            Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
 
             /*
-            Ship newShip = new Ship();
-            aFleet.add(newShip); */
+            Ship newShip = new Carrier(firstPosition, secondPosition);
+            aFleet.add(newShip)
+             */
 
         }
 
