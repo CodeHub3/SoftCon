@@ -17,7 +17,7 @@ public class TargetGrid {
         }
     }
     public void bombard(Position userBomb) {
-        aDatastructure[userBomb.aCoordinates[0]][userBomb.aCoordinates[1]] = 'X';
+        aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
     }
 
 
