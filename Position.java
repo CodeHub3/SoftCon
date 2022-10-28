@@ -6,7 +6,7 @@ public class Position {
         String ch2Str = String.valueOf(ch2Code);
         int ch2 = Integer.parseInt(ch2Str);
         if (ch2 > 9) {
-            //TODO: Handle invalid input
+            //TODO: handle invalid input -> throw exception
         }
         aCoordinates[1] = ch2;
         char ch1 = Character.toUpperCase(userInput.charAt(0));
@@ -20,7 +20,7 @@ public class Position {
             }
         }
         if (found == -1 ) {
-            //TODO: handle invalid input
+            //TODO: handle invalid input -> throw exception
         }
         else {
             aCoordinates[0] = found;

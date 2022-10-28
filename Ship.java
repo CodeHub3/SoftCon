@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Ship {
     private ArrayList<Position> aPositions= new ArrayList<>();
-    char aType;
-    int lifespan;
+    private char aType;
+    private int aLifespan;
 
 
     public Ship(Position startPosition, Position endPosition, String pType) {
@@ -12,7 +12,16 @@ public class Ship {
 
         //TODO all the different type
         if (aType == 'C') {
-            lifespan = 6;
+            aLifespan = 6;
+        }
+        else if (aType == 'B') {
+            aLifespan = 4;
+        }
+        else if (aType == 'S') {
+            aLifespan = 3;
+        }
+        else if (aType == 'P') {
+            aLifespan = 2;
         }
 
         aPositions.add(startPosition);
@@ -38,8 +47,10 @@ public class Ship {
             position.printPosition();
         }
 
+    }
 
-
+    public int getLifespan() {
+        return aLifespan;
     }
 
     public ArrayList<Position> getPositions() {
