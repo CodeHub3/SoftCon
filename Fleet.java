@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Fleet {
     public ArrayList<Ship> aFleet = new ArrayList<>(10);
 
+    public ArrayList<Position> occupiedFields = new ArrayList<>();
     //translator
     public boolean validatePositions(String pShipType, Position pFirstPosition, Position pSecondPosition) {
         //TODO
@@ -12,6 +13,18 @@ public class Fleet {
             System.out.println("You can not enter the same position twice!");
             return false;
         }
+        else if(pFirstPosition.getX() != pSecondPosition.getX() && pFirstPosition.getY() != pSecondPosition.getY()){
+            System.out.println("The ship must be placed either vertically or horizontally");
+            return false;
+        }
+        else if(
+            for (int aPos : occupiedFields){
+                if (pFirstPosition == aPos || pSecondPosition == aPos){
+                    System.out.println("There is already a ship placed on one of these fields");
+                    return false
+                }
+            }
+        )
         return true;
     }
 
