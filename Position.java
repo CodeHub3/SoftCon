@@ -1,5 +1,5 @@
 public class Position {
-    int[] aCoordinates = new int[2];
+    private int[] aCoordinates = new int[2];
 
     public Position(String userInput) {
         char ch2Code = userInput.charAt(1);
@@ -33,6 +33,14 @@ public class Position {
     public Position(int y, int x) {
         aCoordinates[0] = y;
         aCoordinates[1] = x;
+    }
+
+    public int getX() {
+        return aCoordinates[0];
+    }
+
+    public int getY() {
+        return aCoordinates[1];
     }
 
     //method for test purposes...
