@@ -17,17 +17,17 @@ public class Ship {
 
         aPositions.add(startPosition);
         //no encapsuation; maybe getter method
-        if (startPosition.aCoordinates[1] == endPosition.aCoordinates[1]) {
-            int i = startPosition.aCoordinates[0] + 1;
-            while (i != endPosition.aCoordinates[0]) {
-                aPositions.add(new Position(i, startPosition.aCoordinates[1]));
+        if (startPosition.getY() == endPosition.getY()) {
+            int i = startPosition.getX() + 1;
+            while (i != endPosition.getX()) {
+                aPositions.add(new Position(i, startPosition.getY()));
                 i++;
             }
         }
-        if (startPosition.aCoordinates[0] == endPosition.aCoordinates[0]) { //vertical ship
-            int j = startPosition.aCoordinates[1]+1;
-            while (j != endPosition.aCoordinates[1]){
-                aPositions.add(new Position(startPosition.aCoordinates[0],j));
+        if (startPosition.getX() == endPosition.getX()) { //vertical ship
+            int j = startPosition.getY()+1;
+            while (j != endPosition.getY()){
+                aPositions.add(new Position(startPosition.getX(),j));
                 j++;
             }
         }
