@@ -16,5 +16,11 @@ public class OceanGrid {
 
     }
 
+    public void addShip(Ship pShip){
+        for(Position pos : pShip.aPositions){
+            aDatastructure[pos.getY()][pos.getX()] = pShip.aType;
+        }
+    }
+
 
 }
