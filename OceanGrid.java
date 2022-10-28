@@ -16,11 +16,14 @@ public class OceanGrid {
 
     }
 
+    //TODO CHANGE TO FLEES (1 for loop more)
     public void addShip(Ship pShip){
         for(Position pos : pShip.aPositions){
             aDatastructure[pos.getY()][pos.getX()] = pShip.aType;
         }
     }
+
+    //TODO ADD HIT BOMB
 
 
 }

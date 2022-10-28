@@ -20,6 +20,11 @@ public class TargetGrid {
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
     }
 
+    //TODO ADD HIT
+
+    //TODO ADD MISS
+
+    //TODO ADD SHIP DESTROYED
 
 
 }
