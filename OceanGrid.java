@@ -12,7 +12,7 @@ public class OceanGrid {
         }
     }
 
-    //TODO CHANGE TO FLEET (1 for loop more)--> DONE
+    //TODO CHANGE TO FLEET (1 for loop more)--> Doesnt work
     public void addFleet(ArrayList<Ship> pFleet){
         for(Ship ship : pFleet.aFleet){
             for(Position pos : ship.aPositions){
@@ -21,7 +21,7 @@ public class OceanGrid {
         }
     }
 
-    //TODO ADD HIT BOMB --> DONE
+    //TODO ADD HIT BOMB --> Doesnt work
     public void addHit(ArrayList<Position> pComHit){
         for(Position p : pComHit.aComHit){
             aDatastructure[pos.getY()][pos.getX()] = "X";

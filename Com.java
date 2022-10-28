@@ -7,6 +7,7 @@ public class Com {
     private ArrayList<Position> aComBomb = new ArrayList<>();
     private ArrayList<Position> aComHit = new ArrayList<>();
 
+    //Doesnt work
     public comBomb(Position target, ArrayList<Ship> pFleet){
         aComBomb.add(target);
         for(Ship ship : pFleet.aFleet){
