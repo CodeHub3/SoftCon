@@ -18,6 +18,7 @@ public class Fleet {
             return false;
         }
         else if(
+            Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
             for (int aPos : occupiedFields){
                 if (pFirstPosition == aPos || pSecondPosition == aPos){
                     System.out.println("There is already a ship placed on one of these fields");
@@ -44,7 +45,7 @@ public class Fleet {
                 System.out.println("Good choice!");
             }
 
-            Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
+            
 
             /*
             Ship newShip = new Carrier(firstPosition, secondPosition);
