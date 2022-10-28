@@ -6,3 +6,5 @@ public class Fleet {
     public ArrayList<Ship> aFleet = new ArrayList<>(10);
 
 }
+
+//getter method for fleet for ocean grid
