@@ -9,7 +9,7 @@ public class Com {
     public comBomb(Position target, Fleet pFleet){
         aComCall.add(target);
         for(Ship ship : pFleet.aFleet){
-            for(Position pos : ship.getPositions){
+            for(Position pos : ship.getPositions()){
                 if(pos == target){
                     OceanGrid.addHit(pos);
                 }

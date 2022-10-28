@@ -13,8 +13,8 @@ public class OceanGrid {
 
     public void addFleet(Fleet pFleet){
         for(Ship ship : pFleet.getFleet){
-            for(Position pos : ship.getPositions){
-                aDatastructure[pos.getY()][pos.getX()] = ship.getType;
+            for(Position pos : ship.getPositions()){
+                aDatastructure[pos.getY()][pos.getX()] = ship.getType();
             }
         }
     }
