@@ -24,6 +24,10 @@ public class Ship {
             aLifespan = 2;
         }
 
+        public char getType() {
+            return aType;
+        } 
+
         aPositions.add(startPosition);
         //no encapsuation; maybe getter method
         if (startPosition.getY() == endPosition.getY()) {

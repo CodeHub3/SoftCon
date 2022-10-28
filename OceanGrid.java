@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class OceanGrid {
     Character[][] aDatastructure = new Character[10][10];
 
-    //TODO funtion: addBomb(Position comBomb)
     public OceanGrid () {
         for (int col = 0; col < 10; col++) {
             for (int row = 0; row < 10; row++) {
@@ -12,19 +11,16 @@ public class OceanGrid {
         }
     }
 
-    //TODO CHANGE TO FLEET (1 for loop more)--> Doesnt work
     public void addFleet(Fleet pFleet){
-        for(Ship ship : pFleet.aFleet){
+        for(Ship ship : pFleet.getFleet){
             for(Position pos : ship.getPositions){
-                aDatastructure[pos.getY()][pos.getX()] = ship.aType;
+                aDatastructure[pos.getY()][pos.getX()] = ship.getType;
             }
         }
     }
 
-    //TODO ADD HIT BOMB --> Doesnt work not array just position
-    public void addHit(ArrayList<Position> pComHit){
-        for(Position p : pComHit.aComHit){
-            aDatastructure[pos.getY()][pos.getX()] = "X";
-        }
+    public void addHit(Position hit){
+        aDatastructure[hit.getY()][hit.getX()]="X";
     }
+    
 }
