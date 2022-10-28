@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 public class Com {
     //TODO com
+    //noo com hit only call
     private ArrayList<Position> aComBomb = new ArrayList<>();
     private ArrayList<Position> aComHit = new ArrayList<>();
 
     //Doesnt work
-    public comBomb(Position target, ArrayList<Ship> pFleet){
+    public comBomb(Position target, Fleet pFleet){
         aComBomb.add(target);
         for(Ship ship : pFleet.aFleet){
-            for(Position pos : ship.aPositions){
+            for(Position pos : ship.getPositions){
                 if(pos == target){
-                    aComHit.add(target)
+                    //call ocenaGrid with pos
                 }
             }
         }

@@ -13,15 +13,15 @@ public class OceanGrid {
     }
 
     //TODO CHANGE TO FLEET (1 for loop more)--> Doesnt work
-    public void addFleet(ArrayList<Ship> pFleet){
+    public void addFleet(Fleet pFleet){
         for(Ship ship : pFleet.aFleet){
-            for(Position pos : ship.aPositions){
+            for(Position pos : ship.getPositions){
                 aDatastructure[pos.getY()][pos.getX()] = ship.aType;
             }
         }
     }
 
-    //TODO ADD HIT BOMB --> Doesnt work
+    //TODO ADD HIT BOMB --> Doesnt work not array just position
     public void addHit(ArrayList<Position> pComHit){
         for(Position p : pComHit.aComHit){
             aDatastructure[pos.getY()][pos.getX()] = "X";
