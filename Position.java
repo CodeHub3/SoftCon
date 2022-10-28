@@ -43,6 +43,11 @@ public class Position {
         return aCoordinates[1];
     }
 
+    public boolean compareTo(Position pOther) {
+        if (aCoordinates[0] == pOther.getX() && aCoordinates[1] == pOther.getY()) {return true;}
+        else {return false;}
+    }
+
     //method for test purposes...
     public void printPosition() {
         System.out.println("[" + aCoordinates[0] + "," + aCoordinates[1] + "]");
