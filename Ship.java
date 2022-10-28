@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Ship {
-    ArrayList<Position> aPositions= new ArrayList<>();
+    private ArrayList<Position> aPositions= new ArrayList<>();
     char aType;
     int lifespan;
 
@@ -42,7 +42,9 @@ public class Ship {
 
     }
 
-
+    public ArrayList<Position> getPositions() {
+        return aPositions;
+    } 
 
 
 
