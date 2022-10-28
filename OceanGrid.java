@@ -12,18 +12,19 @@ public class OceanGrid {
         }
     }
 
-    public void putInFleet(ArrayList<Ship> pFleet) {
-
-    }
-
-    //TODO CHANGE TO FLEES (1 for loop more)
-    public void addShip(Ship pShip){
-        for(Position pos : pShip.aPositions){
-            aDatastructure[pos.getY()][pos.getX()] = pShip.aType;
+    //TODO CHANGE TO FLEET (1 for loop more)--> DONE
+    public void addFleet(ArrayList<Ship> pFleet){
+        for(Ship ship : pFleet.aFleet){
+            for(Position pos : ship.aPositions){
+                aDatastructure[pos.getY()][pos.getX()] = ship.aType;
+            }
         }
     }
 
-    //TODO ADD HIT BOMB
-
-
+    //TODO ADD HIT BOMB --> DONE
+    public void addHit(ArrayList<Position> pComHit){
+        for(Position p : pComHit.aComHit){
+            aDatastructure[pos.getY()][pos.getX()] = "X";
+        }
+    }
 }
