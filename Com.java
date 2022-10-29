@@ -6,7 +6,7 @@ public class Com {
     //TODO com
     private ArrayList<Position> aComCall = new ArrayList<>();
 
-    public comBomb(Position target, Fleet pFleet){
+    public void comBomb(Position target, Fleet pFleet){
         aComCall.add(target);
         for(Ship ship : pFleet.aFleet){
             for(Position pos : ship.getPositions()){
@@ -17,7 +17,7 @@ public class Com {
         }
     }
 
-    public playerBombing(Position aim, Fleet cFleet){
+    public void playerBombing(Position aim, Fleet cFleet){
         for(Ship ship : cFleet.aFleet){
             for(Position pos : ship.getPositions()){
                 if(pos == aim){
