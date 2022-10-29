@@ -30,13 +30,4 @@ public class TargetGrid {
         }
     }
 
-
-
-    //TODO ADD HIT
-
-    //TODO ADD MISS
-
-    //TODO ADD SHIP DESTROYED
-
-
 }
