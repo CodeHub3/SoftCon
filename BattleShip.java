@@ -30,7 +30,7 @@ public class BattleShip {
             System.out.println("Enter position of bomb");
             Position newUserBomb = new Position(sc.next());
             newUserBomb.printPosition();
-            target.bombard(newUserBomb);
+            target.addHit(newUserBomb);
             won = true;
         }
 
