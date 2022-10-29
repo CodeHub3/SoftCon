@@ -16,9 +16,21 @@ public class TargetGrid {
             }
         }
     }
-    public void bombard(Position userBomb) {
+    public void addMiss(Position userBomb) {
+        aDatastructure[userBomb.getX()][userBomb.getY()] = 'O';
+    }
+
+    public void addHit(Position userBomb){
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
     }
+
+    public void addHit(ArrayList<Position> userBomb, char shipType){
+        for(Position pos : userBomb){
+            aDatastructure[userBomb.getX()][userBomb.getY()] = shipType;
+        }
+    }
+
+
 
     //TODO ADD HIT
 

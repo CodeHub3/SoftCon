@@ -16,4 +16,23 @@ public class Com {
             }
         }
     }
+
+    public playerBombing(Position aim, Fleet cFleet){
+        for(Ship ship : cFleet.aFleet){
+            for(Position pos : ship.getPositions()){
+                if(pos == aim){
+                    if(ship.getLifespan()==1){
+                        TargetGrid.addHit(ship.getPositions(),ship.getType());
+                    }
+                    else{
+                        TargetGrid.addHit(aim);
+                    }
+                    ship.getLifespan -=1;
+                }
+                else{
+                    TargetGrid.addMiss(aim);
+                }
+            }
+        }
+    }
 }
