@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class TargetGrid {
 
     Character[][] aDatastructure = new Character[10][10];
@@ -26,7 +28,7 @@ public class TargetGrid {
 
     public void addHit(ArrayList<Position> userBomb, char shipType){
         for(Position pos : userBomb){
-            aDatastructure[userBomb.getX()][userBomb.getY()] = shipType;
+            aDatastructure[pos.getX()][pos.getY()] = shipType;
         }
     }
 
