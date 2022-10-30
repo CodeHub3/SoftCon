@@ -16,15 +16,16 @@ public class Player {
             System.out.println("The ship must be placed either vertically or horizontally");
             return false;
         }
-        else if(
-            for (int aPos : occupiedFields){
-                if (pFirstPosition == aPos || pSecondPosition == aPos){
+        else {
+            for (Position aPos : occupiedFields) {
+                if (aPos.compareTo(pFirstPosition) || aPos.compareTo(pSecondPosition)) {
                     System.out.println("There is already a ship placed on one of these fields");
-                    return false
+                    return false;
                 }
             }
-        )
+        
         return true;
+        }
     }
 
     public void createUserFleet() {
