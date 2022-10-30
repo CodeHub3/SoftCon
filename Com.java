@@ -13,6 +13,9 @@ public class Com {
                 if(pos == target){
                     OceanGrid.addHit(pos);
                 }
+                else{
+                    OceanGrid.addMiss(pos);
+                }
             }
         }
     }

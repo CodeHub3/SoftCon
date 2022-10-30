@@ -22,5 +22,9 @@ public class OceanGrid {
     public void addHit(Position hit){
         aDatastructure[hit.getY()][hit.getX()]= 'X';
     }
+
+    public void addMiss(Position miss){
+        aDatastructure[miss.getY()][miss.getX()]= 'O';
+    }
     
 }
