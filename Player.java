@@ -7,13 +7,17 @@ public class Player {
     public ArrayList<Position> occupiedFields = new ArrayList<>();
     //translator
     public boolean validatePositions(String pShipType, Position pFirstPosition, Position pSecondPosition) {
-        //TODO
         if (pFirstPosition == pSecondPosition) {
             System.out.println("You can not enter the same position twice!");
             return false;
         }
-        else if(pFirstPosition.getX() != pSecondPosition.getX() && pFirstPosition.getY() != pSecondPosition.getY()){
+        else if (pFirstPosition.getX() != pSecondPosition.getX() && pFirstPosition.getY() != pSecondPosition.getY()){
             System.out.println("The ship must be placed either vertically or horizontally");
+            return false;
+        }
+        else if (Position.getDistance(pFirstPosition, pSecondPosition) != Ship.getLength(pShipType.charAt(0))) {
+            int shipLength = Ship.getLength(pShipType.charAt(0));
+            System.out.println(String.format("The Ship must have a length of %d!", shipLength));
             return false;
         }
         else {
