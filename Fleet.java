@@ -9,4 +9,8 @@ public class Fleet {
         return aFleet;
     } 
 
+    public void addShip(Ship ship) {
+        aFleet.add(ship);
+    }
+
 }
