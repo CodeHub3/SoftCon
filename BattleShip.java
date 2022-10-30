@@ -27,11 +27,23 @@ public class BattleShip {
 
         while (!won) {
             Scanner sc = new Scanner(System.in);
-            System.out.println("Enter position of bomb");
-            Position newUserBomb = new Position(sc.next());
+            Position newUserBomb = null;
+            boolean inputCheck = false;
+            while (!inputCheck) {
+                System.out.println("Enter position of bomb");
+                try {
+                    newUserBomb = new Position(sc.next());
+                    inputCheck = true;
+                }
+                catch (Exception e) {
+                    System.out.println("No a valid position, try again!");
+                }
+            }
+
             newUserBomb.printPosition();
             target.addHit(newUserBomb);
             won = true;
+        
         }
 
         grids.printGrids();
