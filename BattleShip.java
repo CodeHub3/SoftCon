@@ -4,19 +4,22 @@ public class BattleShip {
 
 
     public static void main(String[] args ) {
-        System.out.println("Welcome to Battle Ship");
+        System.out.println("Welcome to Battle Ship!\n");
 
         OceanGrid ocean = new OceanGrid();
         TargetGrid target = new TargetGrid();
         Grids grids = new Grids(target, ocean);
 
+        
+
+
+        Player player = new Player();
+        Fleet userFleet = player.createUserFleet();
+        ocean.addFleet(userFleet);
+
+        System.out.println("\nNow let the game begin!\n");
+
         grids.printGrids();
-
-
-        //Fleet fleet = new Fleet();
-        //fleet.createUserFleet();
-
-        //System.out.println(fleet.aFleet.get(0));
 
         // now I create a ship (carrier) for test purposes
         Position startPosition = new Position(1, 2);
@@ -30,13 +33,13 @@ public class BattleShip {
             Position newUserBomb = null;
             boolean inputCheck = false;
             while (!inputCheck) {
-                System.out.println("Enter position of bomb");
+                System.out.println("\nEnter position of bomb");
                 try {
                     newUserBomb = new Position(sc.next());
                     inputCheck = true;
                 }
                 catch (Exception e) {
-                    System.out.println("No a valid position, try again!");
+                    System.out.println("Not a valid position, try again!");
                 }
             }
 
