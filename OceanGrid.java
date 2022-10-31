@@ -13,9 +13,16 @@ public class OceanGrid {
 
     public void addShip(Ship pShip){
         for(Position pos : pShip.getPositions()){
-            aDatastructure[pos.getY()][pos.getX()] = pShip.getType();
+            aDatastructure[pos.getX()][pos.getY()] = pShip.getType();
+        }        
+    }
+
+    public void addFleet(Fleet pFleet) {
+        for (Ship ship : pFleet.getFleet()) {
+            for(Position pos : ship.getPositions()){
+                aDatastructure[pos.getX()][pos.getY()] = ship.getType();
+            }
         }
-        
     }
 
     public void addHit(Position hit){
@@ -26,4 +33,22 @@ public class OceanGrid {
         aDatastructure[miss.getY()][miss.getX()]= 'O';
     }
     
+    public void printOceanGrid() {
+    System.out.println("===== OCEAN GRID ======");
+        System.out.println("  A B C D E F G H I J  ");
+        System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
+
+        for (int col = 0; col < 10 ; col++) {
+            System.out.print(col);
+            for (int row = 0; row < 10 ; row++) {
+                System.out.print("|");
+                System.out.print(aDatastructure[row][col]);
+            }
+            System.out.print("|" + col + "\n");
+        }
+
+        System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
+        System.out.println("  A B C D E F G H I J  ");
+        System.out.println("=======================");
+    }
 }
