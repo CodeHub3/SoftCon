@@ -32,29 +32,44 @@ public class Player {
         }
     }
 
-    public void createUserFleet() {
+    public Fleet createUserFleet() {
+        Fleet userFleet = new Fleet();
+        OceanGrid userFleetGrid = new OceanGrid();
         String[] shipTypes = {"Carrier", "Battleship", "Battleship", "Submarine", "Submarine", "Submarine",
                 "Patrolboat", "Patrolboat", "Patrolboat", "Patrolboat", };
 
+        userFleetGrid.printOceanGrid();
         Scanner sc = new Scanner(System.in);
 
         for (int i = 0; i < 10; i++) {
-            System.out.println("Please enter " + shipTypes[i] + " position...");
-            Position startPosition = new Position(sc.next());
-            Position endPosition = new Position(sc.next());
-
-
-            if (validatePositions(shipTypes[i], startPosition, endPosition)) {
-                System.out.println("Good choice!");
-            }
-
-            Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
-            //TODO: add ship to fleet
-            for (Position pos : newShip.getPositions()) {
-                occupiedFields.add(pos);
-            }
-        
+            System.out.println("\nPlease enter " + shipTypes[i] + " position...");
+            boolean inputCheck = false;
+            Position startPosition = null;
+            Position endPosition = null;
+            while (!inputCheck) {
+                try {
+                    startPosition = new Position(sc.next());
+                    endPosition = new Position(sc.next());
+                    if (validatePositions(shipTypes[i], startPosition, endPosition)) {
+                        System.out.println("Good choice!\n");
+                        inputCheck = true;             
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println("Enter a valid position!");
+                }    
+                
         }
 
-    }
+            Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
+            userFleetGrid.addShip(newShip);
+            //TODO: add ship to fleet
+            userFleet.addShip(newShip);
+            userFleetGrid.printOceanGrid();
+            for (Position pos : newShip.getPositions()) {
+                occupiedFields.add(pos);
+            }        
+        }
+    return userFleet;
+}
 }
