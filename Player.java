@@ -49,12 +49,11 @@ public class Player {
             }
 
             Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
-
-            /*
-            Ship newShip = new Carrier(firstPosition, secondPosition);
-            aFleet.add(newShip)
-             */
-
+            //TODO: add ship to fleet
+            for (Position pos : newShip.getPositions()) {
+                occupiedFields.add(pos);
+            }
+        
         }
 
     }
