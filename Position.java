@@ -55,10 +55,10 @@ public class Position {
     static int getDistance(Position position1, Position position2) {
         int temp;
         if (position1.getY() == position2.getY()) {
-            temp = position1.getX() - position2.getX();
+            temp = position1.getX() - position2.getX() - 1;
         }        
         else {
-            temp = position1.getY() - position2.getY();
+            temp = position1.getY() - position2.getY() - 1;
          }
         return java.lang.Math.abs(temp);
     }
