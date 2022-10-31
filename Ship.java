@@ -32,13 +32,8 @@ public class Ship {
             }
         }
         aPositions.add(endPosition);
-
-        //prints all the positions, just for test purpouses
-        for (Position position : aPositions) {
-            position.printPosition();
-        }
-
     }
+
     static int getLength(char pShipType) {
         if (pShipType == 'B') {
             return 4;
@@ -56,6 +51,10 @@ public class Ship {
 
     public int getLifespan() {
         return aLifespan;
+    }
+
+    public void reduceLifespan() {
+        aLifespan -= 1;
     }
 
     public ArrayList<Position> getPositions() {
