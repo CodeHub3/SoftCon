@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
 public class BattleShip {
-
-
     public static void main(String[] args ) {
         System.out.println("Welcome to Battle Ship!\n");
 
@@ -10,21 +8,14 @@ public class BattleShip {
         TargetGrid target = new TargetGrid();
         Grids grids = new Grids(target, ocean);
 
-        
-
+        grids.printGrids();
 
         Player player = new Player();
         Fleet userFleet = player.createUserFleet();
         ocean.addFleet(userFleet);
 
-        System.out.println("\nNow let the game begin!\n");
-
         grids.printGrids();
-
-        // now I create a ship (carrier) for test purposes
-        Position startPosition = new Position(1, 2);
-        Position endPosition = new Position(6, 2);
-        Ship testShip = new Ship(startPosition, endPosition, "Carrier");
+        
 
         boolean won = false;
 
@@ -48,12 +39,7 @@ public class BattleShip {
             won = true;
         
         }
-
         grids.printGrids();
-
-
-
-
 
     }
 }
