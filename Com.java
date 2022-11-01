@@ -143,7 +143,7 @@ public class Com {
             }
         }
     }
-    public void playerBombing(Position aim, Fleet cFleet, TargetGrid tarGrid){
+    /*"public void playerBombing(Position aim, Fleet cFleet, TargetGrid tarGrid){
         for(Ship ship : cFleet.aFleet){
             for(Position pos : ship.getPositions()){
                 if(pos == aim){
@@ -160,5 +160,5 @@ public class Com {
                 }
             }
         }
-    }
+    }*/
 }
