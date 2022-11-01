@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class TargetGrid {
     Character[][] aDatastructure = new Character[10][10];
-    public Fleet comFleet = new Fleet();
+    private Fleet comFleet = new Fleet();
 
     public void addToFleet(Ship pShip) {
         comFleet.addShip(pShip);
@@ -14,6 +14,11 @@ public class TargetGrid {
             }
         }
     }
+
+    public boolean shipInFleet(Ship ship) {
+        return comFleet.shipInFleet(ship);
+    }
+
     public void addMiss(Position userBomb) {
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'o'; //'◯';
     }
