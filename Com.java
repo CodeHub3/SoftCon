@@ -129,17 +129,16 @@ public class Com {
 
     private ArrayList<Position> aComCall = new ArrayList<>();
     //public getComCall (Position target,) getter method for postion to check if call was alrdy made
-    public void comBomb(Position target, Fleet pFleet, OceanGrid ocean){
-        aComCall.add(target);
-        for(Ship ship : pFleet.aFleet){
-            for(Position pos : ship.getPositions()){
-                if(pos == target){
-                    ocean.addHit(pos);
-                }
-                else{
-                    ocean.addMiss(pos);
-                }
-            }
+    public Position comBomb(){
+
+        Random rand = new Random();
+        Position bombPos = new Position();
+
+        while(aComCall.contains(bombPos)){
+            bombPos.setX(rand.nextInt(10));
+            bombPos.setY(rand.nextInt(10));
         }
+        aComCall.add(bombPos);
+        return bombPos;
     }
 }
