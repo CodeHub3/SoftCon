@@ -127,18 +127,29 @@ public class Com {
 
     }
 
-    private ArrayList<Position> aComCall = new ArrayList<>();
-    //public getComCall (Position target,) getter method for postion to check if call was alrdy made
-    public Position comBomb(){
+    private ArrayList<Position> aComCalls = new ArrayList<>();
+
+    private boolean isNewCall(Position newCall) {
+        for (Position comCall : aComCalls) {
+            if (newCall.isEqual(comCall)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Position getComCall(){
 
         Random rand = new Random();
         Position bombPos = new Position();
-
-        while(aComCall.contains(bombPos)){
+      
+        while (true) {
             bombPos.setX(rand.nextInt(10));
             bombPos.setY(rand.nextInt(10));
+            if (isNewCall(bombPos)) {break;}
         }
-        aComCall.add(bombPos);
+        
+        aComCalls.add(bombPos);
         return bombPos;
     }
 }
