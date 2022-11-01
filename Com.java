@@ -90,13 +90,13 @@ public class Com {
         int count = 0;
 
         Ship carrier = createCarrier();
-        targetGrid.comFleet.addShip(carrier);
+        targetGrid.addToFleet(carrier);
         //targetGrid.addShip(carrier);
 
         while (count < 2) {
             Ship battleship = createBattleship();
-            if (! targetGrid.comFleet.shipInFleet(battleship)) {
-                targetGrid.comFleet.addShip(battleship);
+            if (! targetGrid.shipInFleet(battleship)) {
+                targetGrid.addToFleet(battleship);
                 //targetGrid.addShip(battleship);
                 ++count;
             }
@@ -105,8 +105,8 @@ public class Com {
 
         while (count < 3) {
             Ship submarine = createSubmarine();
-            if (! targetGrid.comFleet.shipInFleet(submarine)) {
-                targetGrid.comFleet.addShip(submarine);
+            if (! targetGrid.shipInFleet(submarine)) {
+                targetGrid.addToFleet(submarine);
                 //targetGrid.addShip(submarine);
                 ++count;
             }
@@ -115,8 +115,8 @@ public class Com {
 
         while (count < 4) {
             Ship patrolboat = createPatrolboat();
-            if (! targetGrid.comFleet.shipInFleet(patrolboat)) {
-                targetGrid.comFleet.addShip(patrolboat);
+            if (! targetGrid.shipInFleet(patrolboat)) {
+                targetGrid.addToFleet(patrolboat);
                 //targetGrid.addShip(patrolboat);
                 ++count;
             }
