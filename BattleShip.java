@@ -9,11 +9,15 @@ public class BattleShip {
         Com com = new Com();
 
         TargetGrid target = com.createComTarget();
-        //OceanGrid ocean = new OceanGrid();
+        OceanGrid ocean = new OceanGrid();
 
-        //Grids grids = new Grids(target,ocean);
+        Grids grids = new Grids(target,ocean);
 
-        //grids.printGrids();
+        grids.printGrids();
+        Fleet userFleet = player.createUserFleet();
+        ocean.addFleet(userFleet);
+
+        grids.printGrids();
 
 
         boolean won = false;
@@ -34,12 +38,24 @@ public class BattleShip {
             }
 
             target.bombard(newUserBomb);
-            target.printTargetGrid();
-
-
+            if (target.isDestroyed()) {
+                won = true;
+                break;
+            }
+            //target.printTargetGrid();
+            
+            //TODO: make com call
+            if (userFleet.isDestroyed()) {
+                break;
+            }
 
             //grids.printGrids();
         }
-        
+        if (won==true) {
+            System.out.println("Congratulations, you won the game!");
+        }
+        else {
+            System.out.println("You lost, maybe next time!");
+        }        
     }
 }
