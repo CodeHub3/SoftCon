@@ -127,10 +127,8 @@ public class Com {
 
     }
 
-
     private ArrayList<Position> aComCall = new ArrayList<>();
     //public getComCall (Position target,) getter method for postion to check if call was alrdy made
-
     public void comBomb(Position target, Fleet pFleet, OceanGrid ocean){
         aComCall.add(target);
         for(Ship ship : pFleet.aFleet){
