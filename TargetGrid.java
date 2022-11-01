@@ -1,16 +1,12 @@
 import java.util.ArrayList;
 
 public class TargetGrid {
-
     Character[][] aDatastructure = new Character[10][10];
+    public Fleet comFleet = new Fleet();
 
-    /*TODO funtion: bombard(Position userBomb)
-    * -place bomb in grid
-    * -if bomb position is equal to ship position, then replace cell with X and make it displayable
-    * -if bomb position is empty ocean replace cell with O and make it desplayable
-    * -check if hole boat got desroyed -if yes: revile boat, make hole boat displayable
-     */
-
+    public void addToFleet(Ship pShip) {
+        comFleet.addShip(pShip);
+    }
     public TargetGrid () {
         for (int col = 0; col < 10; col++) {
             for (int row = 0; row < 10; row++) {
@@ -19,17 +15,60 @@ public class TargetGrid {
         }
     }
     public void addMiss(Position userBomb) {
-        aDatastructure[userBomb.getX()][userBomb.getY()] = 'O';
+        aDatastructure[userBomb.getX()][userBomb.getY()] = '◯';
     }
-
     public void addHit(Position userBomb){
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
     }
+    public void printTargetGrid() {
+        // shows nothing exept if we tell it to. needs to show X and O and boat if it is reveiled.
+        System.out.println("===== TARGET GRID =====");
+        System.out.println("  A B C D E F G H I J  ");
+        System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
 
-    public void addHit(ArrayList<Position> userBomb, char shipType){
-        for(Position pos : userBomb){
-            aDatastructure[pos.getX()][pos.getY()] = shipType;
+        for (int col = 0; col < 10 ; col++) {
+            System.out.print(col);
+            for (int row = 0; row < 10 ; row++) {
+                System.out.print("|");
+                System.out.print(aDatastructure[row][col]);
+            }
+            System.out.print("|" + col + "\n");
         }
+
+        System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
+        System.out.println("  A B C D E F G H I J  ");
+        System.out.println("=======================");
+    }
+
+    public void revealShip(Ship pShip) {
+        //puts in ship into the grid
+        for(Position pos : pShip.getPositions()){
+            aDatastructure[pos.getX()][pos.getY()] = pShip.getType();
+        }
+    }
+    public void bombard(Position bomb) {
+        if (comFleet.positionInFleet(bomb)) {
+            Ship damagedShip = comFleet.getCorrespondingShip(bomb);
+            damagedShip.reduceLifespan();
+
+            if (damagedShip.getLifespan() <= 0) {
+                revealShip(damagedShip);
+
+            }else {
+                addHit(bomb);
+            }
+        }
+        else {
+            addMiss(bomb);
+        }
+    }
+    public boolean isDestroyed() {
+        for (Ship ship : comFleet.aFleet) {
+            if (ship.getLifespan() >= 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

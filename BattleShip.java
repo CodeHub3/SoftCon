@@ -1,21 +1,20 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BattleShip {
     public static void main(String[] args ) {
         System.out.println("Welcome to Battle Ship!\n");
 
-        OceanGrid ocean = new OceanGrid();
-        TargetGrid target = new TargetGrid();
-        Grids grids = new Grids(target, ocean);
-
-        grids.printGrids();
-
         Player player = new Player();
-        Fleet userFleet = player.createUserFleet();
-        ocean.addFleet(userFleet);
+        Com com = new Com();
 
-        grids.printGrids();
-        
+        TargetGrid target = com.createComTarget();
+        //OceanGrid ocean = new OceanGrid();
+
+        //Grids grids = new Grids(target,ocean);
+
+        //grids.printGrids();
+
 
         boolean won = false;
 
@@ -34,12 +33,13 @@ public class BattleShip {
                 }
             }
 
-            newUserBomb.printPosition();
-            target.addHit(newUserBomb);
-            won = true;
-        
-        }
-        grids.printGrids();
+            target.bombard(newUserBomb);
+            target.printTargetGrid();
 
+
+
+            //grids.printGrids();
+        }
+        
     }
 }

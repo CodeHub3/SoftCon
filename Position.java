@@ -5,8 +5,8 @@ public class Position {
         char ch2Code = userInput.charAt(1);
         String ch2Str = String.valueOf(ch2Code);
         int ch2 = Integer.parseInt(ch2Str);
-        
         aCoordinates[1] = ch2;
+
         char ch1 = Character.toUpperCase(userInput.charAt(0));
         Character[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
         
@@ -34,6 +34,10 @@ public class Position {
         aCoordinates[1] = x;
     }
 
+    public Position() {
+
+    }
+
     public int getX() {
         return aCoordinates[0];
     }
@@ -42,9 +46,16 @@ public class Position {
         return aCoordinates[1];
     }
 
+    public void setX (int x) {
+        aCoordinates[0] = x;
+    }
+    public void setY (int y) {
+        aCoordinates[1] = y;
+    }
+
     public boolean isEqual(Position pOther) {
         if (aCoordinates[0] == pOther.getX() && aCoordinates[1] == pOther.getY()) {return true;}
-        else {return false;}
+        return false;
     }
 
     //method for test purposes...

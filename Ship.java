@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 
 public class Ship {
-    private ArrayList<Position> aPositions= new ArrayList<>();
+    public ArrayList<Position> aPositions= new ArrayList<>();
     private char aType;
-    private String aName;
+    //private String aName;
     private int aLifespan;
 
 
     public Ship(Position startPosition, Position endPosition, String pType) {
 
-        aName = pType;
+        //aName = pType;
         aType = pType.charAt(0);
         aLifespan = getLength(aType);
-        //TODO all the different type
+
         
 
         aPositions.add(startPosition);
@@ -52,11 +52,9 @@ public class Ship {
     public int getLifespan() {
         return aLifespan;
     }
-
     public void reduceLifespan() {
         aLifespan -= 1;
     }
-
     public ArrayList<Position> getPositions() {
         return aPositions;
     } 
@@ -64,9 +62,10 @@ public class Ship {
         return aType;
     }
 
+    /*
     public String getName() {
         return aName;
-    } 
+    } */
 
 
 
