@@ -2,7 +2,10 @@ public class Position {
     private int[] aCoordinates = new int[2];
 
     public Position(String userInput) {
-        char ch2Code = userInput.charAt(1);
+        if (userInput.charAt(1) != ',') {
+            throw new IndexOutOfBoundsException();
+        }
+        char ch2Code = userInput.charAt(2);
         String ch2Str = String.valueOf(ch2Code);
         int ch2 = Integer.parseInt(ch2Str);
         aCoordinates[1] = ch2;
