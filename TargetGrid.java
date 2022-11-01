@@ -15,7 +15,7 @@ public class TargetGrid {
         }
     }
     public void addMiss(Position userBomb) {
-        aDatastructure[userBomb.getX()][userBomb.getY()] = '◯';
+        aDatastructure[userBomb.getX()][userBomb.getY()] = 'o'; //'◯';
     }
     public void addHit(Position userBomb){
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
@@ -64,7 +64,7 @@ public class TargetGrid {
     }
     public boolean isDestroyed() {
         for (Ship ship : comFleet.aFleet) {
-            if (ship.getLifespan() >= 0) {
+            if (ship.getLifespan() != 0) {
                 return false;
             }
         }
