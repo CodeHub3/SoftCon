@@ -53,4 +53,10 @@ public class Fleet {
         return new Ship(new Position(0,0), new Position(0,1), "Patrolboat");
     }
 
+    public boolean isDestroyed() {
+        for (Ship ship : aFleet) {
+            if (ship.getLifespan() != 0) {return false;}
+        }
+        return true;
+    }
 }
