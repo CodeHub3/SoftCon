@@ -2,11 +2,7 @@ import java.util.ArrayList;
 
 public class TargetGrid {
     Character[][] aDatastructure = new Character[10][10];
-    private Fleet comFleet = new Fleet();
-
-    public void addToFleet(Ship pShip) {
-        comFleet.addShip(pShip);
-    }
+    public Fleet comFleet = new Fleet();
     public TargetGrid () {
         for (int col = 0; col < 10; col++) {
             for (int row = 0; row < 10; row++) {
@@ -14,19 +10,13 @@ public class TargetGrid {
             }
         }
     }
-
-    public boolean shipInFleet(Ship ship) {
-        return comFleet.shipInFleet(ship);
-    }
-
     public void addMiss(Position userBomb) {
-        aDatastructure[userBomb.getX()][userBomb.getY()] = 'o'; //'◯';
+        aDatastructure[userBomb.getX()][userBomb.getY()] = '◯';
     }
     public void addHit(Position userBomb){
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
     }
     public void printTargetGrid() {
-        // shows nothing exept if we tell it to. needs to show X and O and boat if it is reveiled.
         System.out.println("===== TARGET GRID =====");
         System.out.println("  A B C D E F G H I J  ");
         System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
@@ -44,11 +34,17 @@ public class TargetGrid {
         System.out.println("  A B C D E F G H I J  ");
         System.out.println("=======================");
     }
-
     public void revealShip(Ship pShip) {
         //puts in ship into the grid
         for(Position pos : pShip.getPositions()){
             aDatastructure[pos.getX()][pos.getY()] = pShip.getType();
+        }
+    }
+
+    public void revealAllShips() {
+        //not tested
+        for(Ship ship : comFleet.aFleet) {
+            revealShip(ship);
         }
     }
     public void bombard(Position bomb) {
@@ -58,8 +54,8 @@ public class TargetGrid {
 
             if (damagedShip.getLifespan() <= 0) {
                 revealShip(damagedShip);
-
-            }else {
+            }
+            else {
                 addHit(bomb);
             }
         }
@@ -67,13 +63,18 @@ public class TargetGrid {
             addMiss(bomb);
         }
     }
-    public boolean isDestroyed() {
+    public boolean isFleetDestroyed() {
         for (Ship ship : comFleet.aFleet) {
-            if (ship.getLifespan() != 0) {
+            if (ship.getLifespan() >= 0) {
                 return false;
             }
         }
         return true;
+    }
+
+    //alles was man nicht braucht...
+    public void addToFleet(Ship pShip) {
+        comFleet.addShip(pShip);
     }
 
 }

@@ -11,7 +11,7 @@ public class Fleet {
 
     public boolean positionInFleet(Position pos) {
         for (Ship ship : aFleet) {
-            for (Position posInShip : ship.getPositions()) {
+            for (Position posInShip : ship.aPositions) {
                 if (posInShip.isEqual(pos)) {
                     return true;
                 }
@@ -19,17 +19,17 @@ public class Fleet {
         }
         return false;
     }
-    public boolean shipInFleet(Ship pShip) {
-        for (Position pos : pShip.getPositions()) {
+    public boolean shipDoesNotOverlap(Ship pShip) {
+        for (Position pos : pShip.aPositions) {
             for (Ship ship : aFleet) {
-                for (Position posInShip : ship.getPositions()) {
+                for (Position posInShip : ship.aPositions) {
                     if (posInShip.isEqual(pos)) {
-                        return true;
+                        return false;
                     }
                 }
             }
         }
-        return false;
+        return true;
     }
     public void addShip(Ship ship) {
         aFleet.add(ship);
@@ -39,7 +39,7 @@ public class Fleet {
         //TODO do it right
         try {
             for (Ship ship : aFleet) {
-                for (Position posInShip : ship.getPositions()) {
+                for (Position posInShip : ship.aPositions) {
                     if (posInShip.isEqual(pos)) {
                         return ship;
                     }
@@ -53,10 +53,4 @@ public class Fleet {
         return new Ship(new Position(0,0), new Position(0,1), "Patrolboat");
     }
 
-    public boolean isDestroyed() {
-        for (Ship ship : aFleet) {
-            if (ship.getLifespan() != 0) {return false;}
-        }
-        return true;
-    }
 }

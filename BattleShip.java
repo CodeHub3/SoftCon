@@ -1,61 +1,40 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class BattleShip {
     public static void main(String[] args ) {
-        System.out.println("Welcome to Battle Ship!\n");
+        System.out.println("\nWelcome to Battle Ship!\n");
+        TargetGrid emptyTarget = new TargetGrid();
+        OceanGrid emptyOcean = new OceanGrid();
+        Grids emptyGrids = new Grids(emptyTarget, emptyOcean);
+        emptyGrids.printGrids();
 
         Player player = new Player();
         Com com = new Com();
 
         TargetGrid target = com.createComTarget();
-        OceanGrid ocean = new OceanGrid();
-
+        OceanGrid ocean = player.createUserOcean();
         Grids grids = new Grids(target,ocean);
 
         grids.printGrids();
-        Fleet userFleet = player.createUserFleet();
-        ocean.addFleet(userFleet);
 
-        grids.printGrids();
+        boolean finished = false;
+        while (!finished) {
 
-
-        boolean won = false;
-
-        while (!won) {
-            Scanner sc = new Scanner(System.in);
-            Position newUserBomb = null;
-            boolean inputCheck = false;
-            while (!inputCheck) {
-                System.out.println("\nEnter position of bomb");
-                try {
-                    newUserBomb = new Position(sc.next());
-                    inputCheck = true;
-                }
-                catch (Exception e) {
-                    System.out.println("Not a valid position, try again!");
-                }
+            target.bombard(player.createBomb());
+            grids.printGrids();
+            if (target.isFleetDestroyed()) {
+                System.out.println("\nCongratulations You Won!!!\nThank you for playing");
+                finished = true;
             }
 
-            target.bombard(newUserBomb);
-            if (target.isDestroyed()) {
-                won = true;
-                break;
-            }
-            //target.printTargetGrid();
-            
-            //TODO: make com call
-            if (userFleet.isDestroyed()) {
-                break;
+            ocean.bombard(com.createBomb());
+            grids.printGrids();
+            if (ocean.isFleetDestroyed()) {
+                System.out.println("\nGame Over\nYou lost!");
+                target.revealAllShips();
+                finished = true;
             }
 
-            //grids.printGrids();
+
         }
-        if (won==true) {
-            System.out.println("Congratulations, you won the game!");
-        }
-        else {
-            System.out.println("You lost, maybe next time!");
-        }        
+        
     }
 }

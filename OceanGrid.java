@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class OceanGrid {
     Character[][] aDatastructure = new Character[10][10];
+    public Fleet userFleet = new Fleet();
 
     public OceanGrid () {
         for (int col = 0; col < 10; col++) {
@@ -10,27 +11,48 @@ public class OceanGrid {
             }
         }
     }
-
     public void addShip(Ship pShip){
         for(Position pos : pShip.getPositions()){
             aDatastructure[pos.getX()][pos.getY()] = pShip.getType();
         }        
     }
 
-    public void addFleet(Fleet pFleet) {
-        for (Ship ship : pFleet.getFleet()) {
-            for(Position pos : ship.getPositions()){
-                aDatastructure[pos.getX()][pos.getY()] = ship.getType();
-            }
-        }
-    }
-
     public void addHit(Position hit){
+        //TODO
         aDatastructure[hit.getY()][hit.getX()]= 'X';
     }
 
     public void addMiss(Position miss){
-        aDatastructure[miss.getY()][miss.getX()]= 'O';
+        //TODO
+        aDatastructure[miss.getY()][miss.getX()]= '◯';
+    }
+
+    public void revealShip(Ship pShip) {
+        //puts in ship into the grid
+        for(Position pos : pShip.getPositions()){
+            aDatastructure[pos.getX()][pos.getY()] = pShip.getType();
+        }
+    }
+
+    public void bombard(Position bomb) {
+        if (userFleet.positionInFleet(bomb)) {
+            Ship damagedShip = userFleet.getCorrespondingShip(bomb);
+            damagedShip.reduceLifespan();
+            //in ocean grid we display only X's and O's
+            addHit(bomb);
+        }
+        else {
+            addMiss(bomb);
+        }
+    }
+
+    public boolean isFleetDestroyed() {
+        for (Ship ship : userFleet.aFleet) {
+            if (ship.getLifespan() >= 0) {
+                return false;
+            }
+        }
+        return true;
     }
     
     public void printOceanGrid() {
@@ -50,5 +72,16 @@ public class OceanGrid {
         System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
         System.out.println("  A B C D E F G H I J  ");
         System.out.println("=======================");
+    }
+
+
+
+    //alles was man nicht braucht...
+    public void addFleet(Fleet pFleet) {
+        for (Ship ship : pFleet.getFleet()) {
+            for(Position pos : ship.getPositions()){
+                aDatastructure[pos.getX()][pos.getY()] = ship.getType();
+            }
+        }
     }
 }

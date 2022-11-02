@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Com {
     TargetGrid targetGrid = new TargetGrid();
-
+    ArrayList<Position> placedBombs = new ArrayList<>();
     public Ship createCarrier() {
         Random rand = new Random();
         Position startPos = new Position();
@@ -87,16 +87,17 @@ public class Com {
         return new Ship(startPos, endPos, "Patrolboat");
     }
     public TargetGrid createComTarget() {
+        //alles gecommented muss noch gelöscht werden
         int count = 0;
 
         Ship carrier = createCarrier();
-        targetGrid.addToFleet(carrier);
+        targetGrid.comFleet.addShip(carrier);
         //targetGrid.addShip(carrier);
 
         while (count < 2) {
             Ship battleship = createBattleship();
-            if (! targetGrid.shipInFleet(battleship)) {
-                targetGrid.addToFleet(battleship);
+            if (targetGrid.comFleet.shipDoesNotOverlap(battleship)) {
+                targetGrid.comFleet.addShip(battleship);
                 //targetGrid.addShip(battleship);
                 ++count;
             }
@@ -105,8 +106,8 @@ public class Com {
 
         while (count < 3) {
             Ship submarine = createSubmarine();
-            if (! targetGrid.shipInFleet(submarine)) {
-                targetGrid.addToFleet(submarine);
+            if (targetGrid.comFleet.shipDoesNotOverlap(submarine)) {
+                targetGrid.comFleet.addShip(submarine);
                 //targetGrid.addShip(submarine);
                 ++count;
             }
@@ -115,8 +116,8 @@ public class Com {
 
         while (count < 4) {
             Ship patrolboat = createPatrolboat();
-            if (! targetGrid.shipInFleet(patrolboat)) {
-                targetGrid.addToFleet(patrolboat);
+            if (targetGrid.comFleet.shipDoesNotOverlap(patrolboat)) {
+                targetGrid.comFleet.addShip(patrolboat);
                 //targetGrid.addShip(patrolboat);
                 ++count;
             }
@@ -127,29 +128,67 @@ public class Com {
 
     }
 
-    private ArrayList<Position> aComCalls = new ArrayList<>();
-
-    private boolean isNewCall(Position newCall) {
-        for (Position comCall : aComCalls) {
-            if (newCall.isEqual(comCall)) {
+    public boolean isBombNeverUsed(Position bomb) {
+        for (Position pos : placedBombs) {
+            if (pos.isEqual(bomb)) {
                 return false;
             }
         }
         return true;
     }
-
-    public Position getComCall(){
-
+    public Position createBomb() {
         Random rand = new Random();
-        Position bombPos = new Position();
-      
+        //not tested if it really works
+
         while (true) {
-            bombPos.setX(rand.nextInt(10));
-            bombPos.setY(rand.nextInt(10));
-            if (isNewCall(bombPos)) {break;}
+            Position bomb = new Position(rand.nextInt(10), rand.nextInt(10));
+            if (isBombNeverUsed(bomb)){
+                placedBombs.add(bomb);
+                return bomb;
+            }
+
         }
-        
-        aComCalls.add(bombPos);
-        return bombPos;
+
     }
+
+
+
+
+
+    //alls wasman nicht braucht...
+    private ArrayList<Position> aComCall = new ArrayList<>();
+    //public getComCall (Position target,) getter method for postion to check if call was alrdy made
+    public void comBomb(Position target, Fleet pFleet, OceanGrid ocean){
+        aComCall.add(target);
+        for(Ship ship : pFleet.aFleet){
+            for(Position pos : ship.getPositions()){
+                if(pos == target){
+                    ocean.addHit(pos);
+                }
+                else{
+                    ocean.addMiss(pos);
+                }
+            }
+        }
+    }
+
+    /* //hab es ausgecommented weil es ein fehler anzeigte
+    public void playerBombing(Position aim, Fleet cFleet, TargetGrid tarGrid){
+        for(Ship ship : cFleet.aFleet){
+            for(Position pos : ship.getPositions()){
+                if(pos == aim){
+                    if(ship.getLifespan()==1){
+                        tarGrid.addHit(ship.getPositions(),ship.getType());
+                    }
+                    else{
+                        tarGrid.addHit(aim);
+                    }
+                    //ship.getLifespan -=1;
+                }
+                else{
+                    tarGrid.addMiss(aim);
+                }
+            }
+        }
+    } */
 }

@@ -1,12 +1,13 @@
 import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
 
 public class Player {
 
-    public ArrayList<Position> occupiedFields = new ArrayList<>();
-    //translator
+    OceanGrid oceanGrid = new OceanGrid();
 
+    /*
+    public ArrayList<Position> occupiedFields = new ArrayList<>();
+    //translator */
 
     public boolean validatePositions(String pShipType, Position pFirstPosition, Position pSecondPosition) {
         if (pFirstPosition == pSecondPosition) {
@@ -24,61 +25,83 @@ public class Player {
             return false;
         }
         else {
-            
+            /*
             for (Position aPos : occupiedFields) {
                 if (aPos.isEqual(pFirstPosition) || aPos.isEqual(pSecondPosition)) {
                     System.out.println("There is already a ship placed on one of these fields");
                     return false;
                 } 
-            }
+            }*/
         
         return true;
         }
     }
 
-    public Fleet createUserFleet() {
-        Fleet userFleet = new Fleet();
-        OceanGrid userFleetGrid = new OceanGrid();
-        userFleetGrid.printOceanGrid();
+    public OceanGrid createUserOcean() {
 
         String[] shipTypes = {"Carrier", "Battleship", "Battleship", "Submarine", "Submarine", "Submarine",
                 "Patrolboat", "Patrolboat", "Patrolboat", "Patrolboat", };
 
-
         Scanner sc = new Scanner(System.in);
+        //TODO input wird falsch eingegeben: eigentlich A2,A5
 
         for (int i = 0; i < 10; i++) {
             System.out.println("\nPlease enter " + shipTypes[i] + " position. Length: " + Ship.getLength(shipTypes[i].charAt((0))) );
             boolean inputCheck = false;
-            Position startPosition = null; //antipattern null
-            Position endPosition = null;
+            Position startPosition = new Position(0,0); //antipattern null, musste es zu 0,0 ändern
+            Position endPosition = new Position(0,0);;
             while (!inputCheck) {
                 try {
-                    startPosition = new Position(sc.next()); //acually should be separated by a comma
+                    startPosition = new Position(sc.next());
                     endPosition = new Position(sc.next());
                     if (validatePositions(shipTypes[i], startPosition, endPosition)) {
-                        System.out.println("Good choice!\n");
-                        inputCheck = true;             
+                        //inputCheck = true;
                     }
                 }
                 catch (Exception e) {
                     System.out.println("Enter a valid position!");
-                }    
-                
-        }
+                }
 
-            Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
-            userFleetGrid.addShip(newShip);
-            //TODO: add ship to fleet
-            userFleet.addShip(newShip);
+                Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
+                if (oceanGrid.userFleet.shipDoesNotOverlap(newShip)) {
+                    System.out.println("\nGood choice!");
+                    oceanGrid.addShip(newShip);
+                    oceanGrid.userFleet.aFleet.add(newShip);
+                    inputCheck = true;
+                }
+                else {
+                    System.out.println("\nThe ships must not overlap\n");
 
-            //only userFleetGrid gets printed
-            userFleetGrid.printOceanGrid();
+                }
 
+            }
+
+            /*
             for (Position pos : newShip.getPositions()) {
                 occupiedFields.add(pos);
-            }        
+            } */
         }
-    return userFleet;
+
+    return oceanGrid;
 }
+
+    public Position createBomb () {
+        //TODO check if position of bomb was already chosen
+
+        Scanner sc = new Scanner(System.in);
+        Position newUserBomb = null;
+        boolean inputCheck = false;
+        while (!inputCheck) {
+            System.out.println("\nEnter position of bomb");
+            try {
+                newUserBomb = new Position(sc.next());
+                inputCheck = true;
+            }
+            catch (Exception e) {
+                System.out.println("Not a valid position, try again!");
+            }
+        }
+
+        return newUserBomb;
+    }
 }

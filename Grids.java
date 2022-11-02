@@ -10,7 +10,6 @@ public class Grids {
 
     public void printGrids () {
         // shows nothing exept if we tell it to. needs to show X and O and boat if it is reveiled.
-        System.out.println("\n");
         System.out.println("===== TARGET GRID =====");
         System.out.println("  A B C D E F G H I J  ");
         System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
