@@ -134,7 +134,7 @@ public class Com {
         Random rand = new Random();
         Position bombPos = new Position(rand.nextInt(10),rand.nextInt(10));
         for(int i = 0; i!=aComCall.size(); i++) {
-            while(aComCall[i].isEqual(bombPos)){
+            while(aComCall.get(i).isEqual(bombPos)){
             bombPos.setX(rand.nextInt(10));
             bombPos.setY(rand.nextInt(10));
             i=0;
@@ -143,3 +143,4 @@ public class Com {
         aComCall.add(bombPos);
         return bombPos;
     }
+}
