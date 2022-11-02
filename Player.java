@@ -88,7 +88,7 @@ public class Player {
 
 
     private ArrayList<Position> aPlayerCall = new ArrayList<>();
-    public Position createBomb () {
+    public Position createBomb() {
         //TODO check if position of bomb was already chosen
 
         Scanner sc = new Scanner(System.in);
@@ -98,16 +98,17 @@ public class Player {
             try {
                 Position newUserBomb = new Position(sc.next());
                 for(int i = 0; i!=aPlayerCall.size(); i++) {
-                    if (aPlayerCall[i].isEqual(newUserBomb)){
+                    if (aPlayerCall.get(i).isEqual(newUserBomb)){
                         throw new ArithmeticException();
                     }
                 }
                 inputCheck = true;
+                aPlayerCall.add(newUserBomb);
             }
             catch (Exception e) {
                 System.out.println("Not a valid position, try again!");
             }
         }
-        aPlayerCall.add(newUserBomb);
-        return newUserBomb;
+        return aPlayerCall.get(-1);
     }
+}
