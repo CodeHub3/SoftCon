@@ -132,7 +132,7 @@ public class Com {
     public Position createBomb(){
 
         Random rand = new Random();
-        Position bombPos = new Position();
+        Position bombPos = new Position(rand.nextInt(10),rand.nextInt(10));
         for(int i = 0; i!=aComCall.size(); i++) {
             while(aComCall[i].isEqual(bombPos)){
             bombPos.setX(rand.nextInt(10));
