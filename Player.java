@@ -48,10 +48,11 @@ public class Player {
         for (int i = 0; i < 10; i++) {
             System.out.println("\nPlease enter " + shipTypes[i] + " position. Length: " + Ship.getLength(shipTypes[i].charAt((0))) );
             boolean inputCheck = false;
-            Position startPosition = new Position(0,0); //antipattern null, musste es zu 0,0 ändern
-            Position endPosition = new Position(0,0);;
+            Position startPosition = new Position(); //antipattern null, musste es zu 0,0 ändern
+            Position endPosition = new Position();
             while (!inputCheck) {
                 try {
+                    // Wieso nicht Position.startPosition = new..
                     startPosition = new Position(sc.next());
                     endPosition = new Position(sc.next());
                     if (validatePositions(shipTypes[i], startPosition, endPosition)) {
