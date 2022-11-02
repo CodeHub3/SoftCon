@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Ship {
-    public ArrayList<Position> aPositions= new ArrayList<>();
+    private ArrayList<Position> aPositions= new ArrayList<>();
     private char aType;
     //private String aName;
     private int aLifespan;

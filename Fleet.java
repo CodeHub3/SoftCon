@@ -11,7 +11,7 @@ public class Fleet {
 
     public boolean positionInFleet(Position pos) {
         for (Ship ship : aFleet) {
-            for (Position posInShip : ship.aPositions) {
+            for (Position posInShip : ship.getPositions()) {
                 if (posInShip.isEqual(pos)) {
                     return true;
                 }
@@ -20,16 +20,16 @@ public class Fleet {
         return false;
     }
     public boolean shipDoesNotOverlap(Ship pShip) {
-        for (Position pos : pShip.aPositions) {
+        for (Position pos : pShip.getPositions()) {
             for (Ship ship : aFleet) {
-                for (Position posInShip : ship.aPositions) {
+                for (Position posInShip : ship.getPositions()) {
                     if (posInShip.isEqual(pos)) {
-                        return false;
+                        return true;
                     }
                 }
             }
         }
-        return true;
+        return false;
     }
     public void addShip(Ship ship) {
         aFleet.add(ship);
@@ -39,7 +39,7 @@ public class Fleet {
         //TODO do it right
         try {
             for (Ship ship : aFleet) {
-                for (Position posInShip : ship.aPositions) {
+                for (Position posInShip : ship.getPositions()) {
                     if (posInShip.isEqual(pos)) {
                         return ship;
                     }

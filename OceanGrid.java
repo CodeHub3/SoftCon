@@ -4,6 +4,22 @@ public class OceanGrid {
     Character[][] aDatastructure = new Character[10][10];
     public Fleet userFleet = new Fleet();
 
+    public void addToFleet(Ship pShip) {
+        userFleet.addShip(pShip);
+    }
+
+    public boolean shipDoesNotOverlap(Ship ship) {
+        return userFleet.shipDoesNotOverlap(ship);
+    }
+
+    public void addFleet(Fleet pFleet) {
+        for (Ship ship : pFleet.getFleet()) {
+            for(Position pos : ship.getPositions()){
+                aDatastructure[pos.getX()][pos.getY()] = ship.getType();
+            }
+        }
+    }
+    
     public OceanGrid () {
         for (int col = 0; col < 10; col++) {
             for (int row = 0; row < 10; row++) {
@@ -24,7 +40,7 @@ public class OceanGrid {
 
     public void addMiss(Position miss){
         //TODO
-        aDatastructure[miss.getY()][miss.getX()]= '◯';
+        aDatastructure[miss.getY()][miss.getX()]= 'O';
     }
 
     public void revealShip(Ship pShip) {
@@ -47,7 +63,7 @@ public class OceanGrid {
     }
 
     public boolean isFleetDestroyed() {
-        for (Ship ship : userFleet.aFleet) {
+        for (Ship ship : userFleet.getFleet()) {
             if (ship.getLifespan() >= 0) {
                 return false;
             }
@@ -72,16 +88,5 @@ public class OceanGrid {
         System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
         System.out.println("  A B C D E F G H I J  ");
         System.out.println("=======================");
-    }
-
-
-
-    //alles was man nicht braucht...
-    public void addFleet(Fleet pFleet) {
-        for (Ship ship : pFleet.getFleet()) {
-            for(Position pos : ship.getPositions()){
-                aDatastructure[pos.getX()][pos.getY()] = ship.getType();
-            }
-        }
     }
 }

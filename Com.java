@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class Com {
     TargetGrid targetGrid = new TargetGrid();
-    ArrayList<Position> placedBombs = new ArrayList<>();
     public Ship createCarrier() {
         Random rand = new Random();
         Position startPos = new Position();
@@ -17,6 +16,7 @@ public class Com {
             startPos.setY(rand.nextInt(5));
             endPos.setX(startPos.getX());
             endPos.setY(startPos.getY() + 5);
+
         }
         else { //vertically
             startPos.setX(rand.nextInt(5));
@@ -91,13 +91,13 @@ public class Com {
         int count = 0;
 
         Ship carrier = createCarrier();
-        targetGrid.comFleet.addShip(carrier);
+        targetGrid.addToFleet(carrier);
         //targetGrid.addShip(carrier);
 
         while (count < 2) {
             Ship battleship = createBattleship();
-            if (targetGrid.comFleet.shipDoesNotOverlap(battleship)) {
-                targetGrid.comFleet.addShip(battleship);
+            if (targetGrid.shipDoesNotOverlap(battleship)) {
+                targetGrid.addToFleet(battleship);
                 //targetGrid.addShip(battleship);
                 ++count;
             }
@@ -106,8 +106,8 @@ public class Com {
 
         while (count < 3) {
             Ship submarine = createSubmarine();
-            if (targetGrid.comFleet.shipDoesNotOverlap(submarine)) {
-                targetGrid.comFleet.addShip(submarine);
+            if (targetGrid.shipDoesNotOverlap(submarine)) {
+                targetGrid.addToFleet(submarine);
                 //targetGrid.addShip(submarine);
                 ++count;
             }
@@ -116,8 +116,8 @@ public class Com {
 
         while (count < 4) {
             Ship patrolboat = createPatrolboat();
-            if (targetGrid.comFleet.shipDoesNotOverlap(patrolboat)) {
-                targetGrid.comFleet.addShip(patrolboat);
+            if (targetGrid.shipDoesNotOverlap(patrolboat)) {
+                targetGrid.addToFleet(patrolboat);
                 //targetGrid.addShip(patrolboat);
                 ++count;
             }
@@ -128,36 +128,8 @@ public class Com {
 
     }
 
-    public boolean isBombNeverUsed(Position bomb) {
-        for (Position pos : placedBombs) {
-            if (pos.isEqual(bomb)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    public Position createBomb() {
-        Random rand = new Random();
-        //not tested if it really works
-
-        while (true) {
-            Position bomb = new Position(rand.nextInt(10), rand.nextInt(10));
-            if (isBombNeverUsed(bomb)){
-                placedBombs.add(bomb);
-                return bomb;
-            }
-
-        }
-
-    }
-
-
-
-
-
-    //alls wasman nicht braucht...
     private ArrayList<Position> aComCall = new ArrayList<>();
-    public Position comBomb(){
+    public Position createBomb(){
 
         Random rand = new Random();
         Position bombPos = new Position();

@@ -2,7 +2,16 @@ import java.util.ArrayList;
 
 public class TargetGrid {
     Character[][] aDatastructure = new Character[10][10];
-    public Fleet comFleet = new Fleet();
+    private Fleet comFleet = new Fleet();
+
+    public void addToFleet(Ship pShip) {
+        comFleet.addShip(pShip);
+    }
+
+    public boolean shipDoesNotOverlap(Ship ship) {
+        return comFleet.shipDoesNotOverlap(ship);
+    }
+
     public TargetGrid () {
         for (int col = 0; col < 10; col++) {
             for (int row = 0; row < 10; row++) {
@@ -11,7 +20,7 @@ public class TargetGrid {
         }
     }
     public void addMiss(Position userBomb) {
-        aDatastructure[userBomb.getX()][userBomb.getY()] = '◯';
+        aDatastructure[userBomb.getX()][userBomb.getY()] = 'o';
     }
     public void addHit(Position userBomb){
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
@@ -70,11 +79,6 @@ public class TargetGrid {
             }
         }
         return true;
-    }
-
-    //alles was man nicht braucht...
-    public void addToFleet(Ship pShip) {
-        comFleet.addShip(pShip);
     }
 
 }

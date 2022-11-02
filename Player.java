@@ -63,10 +63,10 @@ public class Player {
                 }
 
                 Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
-                if (oceanGrid.userFleet.shipDoesNotOverlap(newShip)) {
+                if (oceanGrid.shipDoesNotOverlap(newShip)) {
                     System.out.println("\nGood choice!");
                     oceanGrid.addShip(newShip);
-                    oceanGrid.userFleet.aFleet.add(newShip);
+                    oceanGrid.addToFleet(newShip);
                     inputCheck = true;
                 }
                 else {
