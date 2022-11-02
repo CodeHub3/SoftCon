@@ -85,23 +85,28 @@ public class Player {
     return oceanGrid;
 }
 
+
+    private ArrayList<Position> aPlayerCall = new ArrayList<>();
     public Position createBomb () {
         //TODO check if position of bomb was already chosen
 
         Scanner sc = new Scanner(System.in);
-        Position newUserBomb = null;
         boolean inputCheck = false;
         while (!inputCheck) {
             System.out.println("\nEnter position of bomb");
             try {
-                newUserBomb = new Position(sc.next());
+                Position newUserBomb = new Position(sc.next());
+                for(int i = 0; i!=aPlayerCall.size(); i++) {
+                    if (aPlayerCall[i].isEqual(newUserBomb)){
+                        throw new ArithmeticException();
+                    }
+                }
                 inputCheck = true;
             }
             catch (Exception e) {
                 System.out.println("Not a valid position, try again!");
             }
         }
-
+        aPlayerCall.add(newUserBomb);
         return newUserBomb;
     }
-}
