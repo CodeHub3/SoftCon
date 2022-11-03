@@ -12,13 +12,13 @@ public class OceanGrid implements Playground {
         return userFleet.shipDoesNotOverlap(ship);
     }
 
-    public void addFleet(Fleet pFleet) {
+    /*public void addFleet(Fleet pFleet) {
         for (Ship ship : pFleet.getFleet()) {
             for(Position pos : ship.getPositions()){
                 aDatastructure[pos.getX()][pos.getY()] = ship.getType();
             }
         }
-    }
+    }*/
     
     public OceanGrid () {
         for (int col = 0; col < 10; col++) {
