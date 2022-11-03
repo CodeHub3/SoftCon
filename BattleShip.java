@@ -40,6 +40,7 @@ public class BattleShip {
             if (target.isFleetDestroyed()) {
                 Typewriter.main("\nCongratulations You Won!!!\nThank you for playing");
                 finished = true;
+                break;
             }
             //System.out.print("\nThe other player is making his move now");
             Typewriter.main("The other player is making his move now");
