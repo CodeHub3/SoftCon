@@ -81,6 +81,11 @@ public class OceanGrid {
             for (int row = 0; row < 10 ; row++) {
                 System.out.print("|");
                 System.out.print(aDatastructure[row][col]);
+                try {
+                    Thread.sleep(4);
+                  } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                  }
             }
             System.out.print("|" + col + "\n");
         }
