@@ -35,6 +35,11 @@ public class TargetGrid {
             for (int row = 0; row < 10 ; row++) {
                 System.out.print("|");
                 System.out.print(aDatastructure[row][col]);
+                try {
+                    Thread.sleep(4);
+                  } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                  }
             }
             System.out.print("|" + col + "\n");
         }
@@ -42,6 +47,13 @@ public class TargetGrid {
         System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
         System.out.println("  A B C D E F G H I J  ");
         System.out.println("=======================");
+
+        System.out.println("\n-----------------------\n");
+
+        System.out.println("===== OCEAN GRID ======");
+        System.out.println("  omitted for brevity ");
+        System.out.println("=======================\n");
+
     }
     public void revealShip(Ship pShip) {
         //puts in ship into the grid
