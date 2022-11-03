@@ -24,7 +24,8 @@ public class BattleShip {
                 System.out.println("\nCongratulations You Won!!!\nThank you for playing");
                 finished = true;
             }
-            System.out.print("\nThe other player is making his move now");
+            //System.out.print("\nThe other player is making his move now");
+            Typewriter.main("The other player is making his move now");
             for (int i=0; i<4; i++) {                
                 try {
                 Thread.sleep(1000);
