@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException; //andere exception?
 
-public class Player {
+public class Player implements Bombs {
 
     OceanGrid oceanGrid = new OceanGrid();
 

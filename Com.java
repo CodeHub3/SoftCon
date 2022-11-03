@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Com {
+public class Com implements Bombs {
     TargetGrid targetGrid = new TargetGrid();
     public Ship createCarrier() {
         Random rand = new Random();

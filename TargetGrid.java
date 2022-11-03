@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class TargetGrid {
+public class TargetGrid implements Playground {
     Character[][] aDatastructure = new Character[10][10];
     private Fleet comFleet = new Fleet();
 

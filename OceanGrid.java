@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public class OceanGrid {
+public class OceanGrid implements Playground {
     Character[][] aDatastructure = new Character[10][10];
-    public Fleet userFleet = new Fleet();
+    private Fleet userFleet = new Fleet();
 
     public void addToFleet(Ship pShip) {
         userFleet.addShip(pShip);
@@ -12,13 +12,13 @@ public class OceanGrid {
         return userFleet.shipDoesNotOverlap(ship);
     }
 
-    public void addFleet(Fleet pFleet) {
+    /*public void addFleet(Fleet pFleet) {
         for (Ship ship : pFleet.getFleet()) {
             for(Position pos : ship.getPositions()){
                 aDatastructure[pos.getX()][pos.getY()] = ship.getType();
             }
         }
-    }
+    }*/
     
     public OceanGrid () {
         for (int col = 0; col < 10; col++) {
