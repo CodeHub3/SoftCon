@@ -36,7 +36,7 @@ public class BattleShip {
         while (!finished) {
 
             target.bombard(player.createBomb());
-            grids.printGrids();
+            target.printTargetGrid();
             if (target.isFleetDestroyed()) {
                 Typewriter.main("\nCongratulations You Won!!!\nThank you for playing");
                 finished = true;
@@ -57,11 +57,9 @@ public class BattleShip {
             if (ocean.isFleetDestroyed()) {
                 Typewriter.main("\nGame Over\nYou lost!");
                 target.revealAllShips();
+                grids.printGrids();
                 finished = true;
             }
-
-
-        }
-        
+        }        
     }
 }
