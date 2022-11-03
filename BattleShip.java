@@ -1,6 +1,17 @@
 public class BattleShip {
     public static void main(String[] args ) {
-        System.out.println("\nWelcome to Battle Ship!\n");
+        //System.out.println("\nWelcome to Battle Ship!\n");
+        Typewriter.main("\nWelcome to Battle Ship!\n");
+        Typewriter.main("Loading...   ");
+        for (int i = 1; i<=10; i++) {
+            try {
+                Thread.sleep(i * 60);
+                } 
+                catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                }
+            System.out.print("|");
+        }
         TargetGrid emptyTarget = new TargetGrid();
         OceanGrid emptyOcean = new OceanGrid();
         Grids emptyGrids = new Grids(emptyTarget, emptyOcean);
@@ -21,14 +32,14 @@ public class BattleShip {
             target.bombard(player.createBomb());
             grids.printGrids();
             if (target.isFleetDestroyed()) {
-                System.out.println("\nCongratulations You Won!!!\nThank you for playing");
+                Typewriter.main("\nCongratulations You Won!!!\nThank you for playing");
                 finished = true;
             }
             //System.out.print("\nThe other player is making his move now");
             Typewriter.main("The other player is making his move now");
             for (int i=0; i<4; i++) {                
                 try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 } 
                 catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -38,7 +49,7 @@ public class BattleShip {
             ocean.bombard(com.createBomb());
             grids.printGrids();
             if (ocean.isFleetDestroyed()) {
-                System.out.println("\nGame Over\nYou lost!");
+                Typewriter.main("\nGame Over\nYou lost!");
                 target.revealAllShips();
                 finished = true;
             }
