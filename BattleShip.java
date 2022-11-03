@@ -24,7 +24,16 @@ public class BattleShip {
                 System.out.println("\nCongratulations You Won!!!\nThank you for playing");
                 finished = true;
             }
-
+            System.out.print("\nThe other player is making his move now");
+            for (int i=0; i<4; i++) {                
+                try {
+                Thread.sleep(1000);
+                } 
+                catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                }
+                if (i!=3) {System.out.print(".");}
+                }
             ocean.bombard(com.createBomb());
             grids.printGrids();
             if (ocean.isFleetDestroyed()) {
