@@ -127,20 +127,29 @@ public class Com {
         return targetGrid;
 
     }
+    private ArrayList<Position> aComCalls = new ArrayList<>();
 
-    private ArrayList<Position> aComCall = new ArrayList<>();
-    public Position createBomb(){
-
-        Random rand = new Random();
-        Position bombPos = new Position(rand.nextInt(10),rand.nextInt(10));
-        for(int i = 0; i!=aComCall.size(); i++) {
-            while(aComCall.get(i).isEqual(bombPos)){
-            bombPos.setX(rand.nextInt(10));
-            bombPos.setY(rand.nextInt(10));
-            i=0;
+    private boolean isNewCall(Position newCall) {
+        for (Position comCall : aComCalls) {
+            if (newCall.isEqual(comCall)) {
+                return false;
             }
         }
-        aComCall.add(bombPos);
+        return true;
+    }
+
+    public Position getComCall(){
+
+        Random rand = new Random();
+        Position bombPos = new Position();
+      
+        while (true) {
+            bombPos.setX(rand.nextInt(10));
+            bombPos.setY(rand.nextInt(10));
+            if (isNewCall(bombPos)) {break;}
+        }
+        
+        aComCalls.add(bombPos);
         return bombPos;
     }
 }
