@@ -10,7 +10,7 @@ public class Player {
     //translator */
 
     public boolean validatePositions(String pShipType, Position pFirstPosition, Position pSecondPosition) {
-        if (pFirstPosition == pSecondPosition) {
+        if (pFirstPosition.isEqual(pSecondPosition)) {
             System.out.println("You can not enter the same position twice!");
             return false;
         }
