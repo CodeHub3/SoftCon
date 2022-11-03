@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException; //andere exception?
 
 public class Player {
 
@@ -53,26 +54,36 @@ public class Player {
             while (!inputCheck) {
                 try {
                     // Wieso nicht Position.startPosition = new..
-                    startPosition = new Position(sc.next());
-                    endPosition = new Position(sc.next());
+                    String userInput = sc.next();
+                    if (userInput.charAt(2) != ',') {
+                        throw new InputMismatchException();
+                    }
+                    String[] arrOfStr = userInput.split(",", 2);
+                    startPosition = new Position(arrOfStr[0]);
+                    endPosition = new Position(arrOfStr[1]);
+                    
                     if (!validatePositions(shipTypes[i], startPosition, endPosition)) {
                         throw new IndexOutOfBoundsException();
                     }
+                    inputCheck = true;
                 }
                 catch (Exception e) {
                     System.out.println("Enter a valid position!");
                 }
 
-                Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
-                if (oceanGrid.shipDoesNotOverlap(newShip)) {
-                    System.out.println("\nGood choice!");
-                    oceanGrid.addShip(newShip);
-                    oceanGrid.addToFleet(newShip);
-                    inputCheck = true;
+                if (inputCheck) {
+                    Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
+                    if (oceanGrid.shipDoesNotOverlap(newShip)) {
+                        System.out.println("\nGood choice!");
+                        oceanGrid.addShip(newShip);
+                        oceanGrid.addToFleet(newShip);
+                        inputCheck = true;
                 }
-                else {
-                    System.out.println("\nThe ships must not overlap\n");
-
+                    else {
+                        inputCheck = false;
+                        System.out.println("\nThe ships must not overlap\n");
+                        System.out.println("Enter a valid position!");
+                }
                 }
 
             }
