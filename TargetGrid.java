@@ -20,7 +20,7 @@ public class TargetGrid {
         }
     }
     public void addMiss(Position userBomb) {
-        aDatastructure[userBomb.getX()][userBomb.getY()] = 'o';
+        aDatastructure[userBomb.getX()][userBomb.getY()] = 'O';
     }
     public void addHit(Position userBomb){
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
