@@ -35,12 +35,12 @@ public class OceanGrid {
 
     public void addHit(Position hit){
         //TODO
-        aDatastructure[hit.getY()][hit.getX()]= 'X';
+        aDatastructure[hit.getX()][hit.getY()]= 'X';
     }
 
     public void addMiss(Position miss){
         //TODO
-        aDatastructure[miss.getY()][miss.getX()]= 'O';
+        aDatastructure[miss.getX()][miss.getY()]= 'O';
     }
 
     public void revealShip(Ship pShip) {
