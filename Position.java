@@ -35,8 +35,8 @@ public class Position {
     }
 
     public Position() {
-        aCoordinates[0] = 0;
-        aCoordinates[1] = 0;
+        //aCoordinates[0] = 0;
+        //aCoordinates[1] = 0;
     }
 
     public int getX() {
