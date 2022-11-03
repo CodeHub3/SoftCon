@@ -46,7 +46,7 @@ public class Player {
         Scanner sc = new Scanner(System.in);
         //TODO input wird falsch eingegeben: eigentlich A2,A5
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2/*10*/; i++) {
             System.out.println("\nPlease enter " + shipTypes[i] + " position. Length: " + Ship.getLength(shipTypes[i].charAt((0))) );
             boolean inputCheck = false;
             Position startPosition = new Position(); //antipattern null, musste es zu 0,0 ändern
@@ -73,11 +73,11 @@ public class Player {
 
                 if (inputCheck) {
                     Ship newShip = new Ship(startPosition, endPosition, shipTypes[i]);
-                    if (oceanGrid.shipDoesNotOverlap(newShip)) {
-                        System.out.println("\nGood choice!");
+                    if (oceanGrid.shipDoesNotOverlap(newShip)) {                       
                         oceanGrid.addShip(newShip);
                         oceanGrid.addToFleet(newShip);
-                        inputCheck = true;
+                        oceanGrid.printOceanGrid();
+                        System.out.println("\nGood choice!");
                 }
                     else {
                         inputCheck = false;
@@ -97,29 +97,28 @@ public class Player {
     return oceanGrid;
 }
 
-
     private ArrayList<Position> aPlayerCall = new ArrayList<>();
     public Position createBomb() {
         //TODO check if position of bomb was already chosen
-
         Scanner sc = new Scanner(System.in);
         boolean inputCheck = false;
         while (!inputCheck) {
             System.out.println("\nEnter position of bomb");
             try {
                 Position newUserBomb = new Position(sc.next());
-                for(int i = 0; i!=aPlayerCall.size(); i++) {
-                    if (aPlayerCall.get(i).isEqual(newUserBomb)){
-                        throw new ArithmeticException();
-                    }
-                }
                 inputCheck = true;
+                for (Position playerCall : aPlayerCall) {
+                    if (playerCall.isEqual(newUserBomb)) {
+                        
+                    }    
+                }
                 aPlayerCall.add(newUserBomb);
             }
             catch (Exception e) {
                 System.out.println("Not a valid position, try again!");
             }
+            
         }
-        return aPlayerCall.get(-1);
+        return aPlayerCall.get(aPlayerCall.size()-1);
     }
 }
