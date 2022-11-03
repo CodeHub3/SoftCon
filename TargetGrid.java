@@ -86,7 +86,7 @@ public class TargetGrid {
     }
     public boolean isFleetDestroyed() {
         for (Ship ship : comFleet.getFleet()) {
-            if (ship.getLifespan() >= 0) {
+            if (ship.getLifespan() > 0) {
                 return false;
             }
         }
