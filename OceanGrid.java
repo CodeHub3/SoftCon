@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public class OceanGrid {
+public class OceanGrid implements Playground {
     Character[][] aDatastructure = new Character[10][10];
-    public Fleet userFleet = new Fleet();
+    private Fleet userFleet = new Fleet();
 
     public void addToFleet(Ship pShip) {
         userFleet.addShip(pShip);
