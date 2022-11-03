@@ -20,6 +20,11 @@ public class Grids {
             for (int row = 0; row < 10 ; row++) {
                 System.out.print("|");
                 System.out.print(aTarget.aDatastructure[row][col]);
+                try {
+                    Thread.sleep(4);
+                  } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                  }
             }
             System.out.print("|" + col + "\n");
         }
@@ -28,8 +33,20 @@ public class Grids {
         System.out.println("  A B C D E F G H I J  ");
         System.out.println("=======================");
 
-        System.out.println("\n-----------------------\n");
+        try {
+            Thread.sleep(4);
+          } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+          }
 
+        System.out.println("\n-----------------------\n");
+        
+        try {
+            Thread.sleep(4);
+          } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+          }
+          
         System.out.println("===== OCEAN GRID ======");
         System.out.println("  A B C D E F G H I J  ");
         System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
@@ -39,6 +56,11 @@ public class Grids {
             for (int row = 0; row < 10 ; row++) {
                 System.out.print("|");
                 System.out.print(aOcean.aDatastructure[row][col]);
+                try {
+                    Thread.sleep(4);
+                  } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                  }
             }
             System.out.print("|" + col + "\n");
         }
