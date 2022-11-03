@@ -38,7 +38,9 @@ public class BattleShip {
             target.bombard(player.createBomb());
             target.printTargetGrid();
             if (target.isFleetDestroyed()) {
-                Typewriter.main("\nCongratulations You Won!!!\nThank you for playing");
+                Typewriter.main("\nCongratulations You Won!!!\n");
+                System.out.println("\n   ###%%%%%%%%%%%%%###\n   ## %%%%%%%%%%%%% ##\n     ##%%%%%%%%%%%##  \n         %%%%%%%      \n           ###        \n         (((((((      \n        %%%%%%%%%     \n");
+                Typewriter.main("  Thank you for playing\n\n");
                 finished = true;
                 break;
             }
@@ -56,9 +58,22 @@ public class BattleShip {
             ocean.bombard(com.createBomb());
             grids.printGrids();
             if (ocean.isFleetDestroyed()) {
-                Typewriter.main("\nGame Over\nYou lost!");
+                Typewriter.main("\n       Game Over\n\n");
+                System.out.println("  @@               @@     \n@@@@  @@@@@@@@@@@  @@@@   \n    @@@@@@@@@@@@@@@       \n    @@@  @@@@@@  @@       \n     @@@@@@@@@@@@@        \n       @@@ @ @@@          \n        @@@@@@@@          \n      @@@      @@         \n    @@@          @@@      \n");
+                Typewriter.main("       You lost!\n");
+                Typewriter.main("\nRevealing all ships of the opponent");
+                //add ... in slow
+                for (int i=0; i<4; i++) {                
+                    try {
+                    Thread.sleep(500);
+                    } 
+                    catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    }
+                    if (i!=3) {System.out.print(".");}
+                    }             
                 target.revealAllShips();
-                grids.printGrids();
+                target.printTargetGrid();
                 finished = true;
             }
         }        
