@@ -55,8 +55,8 @@ public class Player {
                     // Wieso nicht Position.startPosition = new..
                     startPosition = new Position(sc.next());
                     endPosition = new Position(sc.next());
-                    if (validatePositions(shipTypes[i], startPosition, endPosition)) {
-                        //inputCheck = true;
+                    if (!validatePositions(shipTypes[i], startPosition, endPosition)) {
+                        throw new IndexOutOfBoundsException();
                     }
                 }
                 catch (Exception e) {
