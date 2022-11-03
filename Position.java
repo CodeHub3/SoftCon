@@ -2,6 +2,9 @@ public class Position {
     private int[] aCoordinates = new int[2];
 
     public Position(String userInput) {
+        if (userInput.length()!=2){
+            throw new IndexOutOfBoundsException();
+        }
         char ch2Code = userInput.charAt(1);
         String ch2Str = String.valueOf(ch2Code);
         int ch2 = Integer.parseInt(ch2Str);
@@ -9,7 +12,6 @@ public class Position {
 
         char ch1 = Character.toUpperCase(userInput.charAt(0));
         Character[] letters = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        
         int found = -1;
         for (int i = 0; i < letters.length; ++i) {
             if (letters[i] == ch1) {

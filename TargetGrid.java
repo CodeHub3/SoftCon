@@ -26,6 +26,7 @@ public class TargetGrid implements Playground {
         aDatastructure[userBomb.getX()][userBomb.getY()] = 'X';
     }
     public void printTargetGrid() {
+        System.out.println("\n");
         System.out.println("===== TARGET GRID =====");
         System.out.println("  A B C D E F G H I J  ");
         System.out.println(" +-+-+-+-+-+-+-+-+-+-+");
