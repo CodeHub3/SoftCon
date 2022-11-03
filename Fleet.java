@@ -24,12 +24,12 @@ public class Fleet {
             for (Ship ship : aFleet) {
                 for (Position posInShip : ship.getPositions()) {
                     if (posInShip.isEqual(pos)) {
-                        return true;
+                        return false;
                     }
                 }
             }
         }
-        return false;
+        return true;
     }
     public void addShip(Ship ship) {
         aFleet.add(ship);
