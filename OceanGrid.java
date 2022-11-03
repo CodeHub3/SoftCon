@@ -64,7 +64,7 @@ public class OceanGrid {
 
     public boolean isFleetDestroyed() {
         for (Ship ship : userFleet.getFleet()) {
-            if (ship.getLifespan() >= 0) {
+            if (ship.getLifespan() > 0) {
                 return false;
             }
         }
