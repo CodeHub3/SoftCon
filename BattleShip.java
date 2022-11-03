@@ -2,10 +2,16 @@ public class BattleShip {
     public static void main(String[] args ) {
         //System.out.println("\nWelcome to Battle Ship!\n");
         Typewriter.main("\nWelcome to Battle Ship!\n");
+        try {
+            Thread.sleep(500);
+            } 
+            catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            }
         Typewriter.main("Loading...   ");
         for (int i = 1; i<=10; i++) {
             try {
-                Thread.sleep(i * 60);
+                Thread.sleep(i * 70);
                 } 
                 catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
