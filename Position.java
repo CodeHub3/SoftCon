@@ -20,16 +20,11 @@ public class Position {
             }
         }
         if (found == -1 ) {
-            //TODO: handle invalid input -> throw exception
             throw new IndexOutOfBoundsException();
         }
         else {
             aCoordinates[0] = found;
         }
-
-        //test jjj
-        /*aCoordinates[0] = 4;
-        aCoordinates[1] = 4;*/
     }
     public Position(int y, int x) {
         aCoordinates[0] = y;
@@ -37,8 +32,6 @@ public class Position {
     }
 
     public Position() {
-        //aCoordinates[0] = 0;
-        //aCoordinates[1] = 0;
     }
 
     public int getX() {
@@ -59,11 +52,6 @@ public class Position {
     public boolean isEqual(Position pOther) {
         if (aCoordinates[0] == pOther.getX() && aCoordinates[1] == pOther.getY()) {return true;}
         return false;
-    }
-
-    //method for test purposes...
-    public void printPosition() {
-        System.out.println("[" + aCoordinates[0] + "," + aCoordinates[1] + "]");
     }
 
     static int getDistance(Position position1, Position position2) {

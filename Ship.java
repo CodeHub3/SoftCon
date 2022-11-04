@@ -3,20 +3,17 @@ import java.util.ArrayList;
 public class Ship {
     private ArrayList<Position> aPositions= new ArrayList<>();
     private char aType;
-    //private String aName;
     private int aLifespan;
 
 
     public Ship(Position startPosition, Position endPosition, String pType) {
 
-        //aName = pType;
         aType = pType.charAt(0);
         aLifespan = getLength(aType);
 
         
 
         aPositions.add(startPosition);
-        //no encapsuation; maybe getter method
         if (startPosition.getY() == endPosition.getY()) {
             int i = startPosition.getX() + 1;
             while (i != endPosition.getX()) {
@@ -24,7 +21,7 @@ public class Ship {
                 i++;
             }
         }
-        if (startPosition.getX() == endPosition.getX()) { //vertical ship
+        if (startPosition.getX() == endPosition.getX()) { 
             int j = startPosition.getY()+1;
             while (j != endPosition.getY()){
                 aPositions.add(new Position(startPosition.getX(),j));
@@ -61,13 +58,4 @@ public class Ship {
     public char getType(){
         return aType;
     }
-
-    /*
-    public String getName() {
-        return aName;
-    } */
-
-
-
-
 }

@@ -1,14 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.InputMismatchException; //andere exception?
+import java.util.InputMismatchException;
 
 public class Player{
-
     OceanGrid oceanGrid = new OceanGrid();
-
-    /*
-    public ArrayList<Position> occupiedFields = new ArrayList<>();
-    //translator */
+    private ArrayList<Position> aPlayerCall = new ArrayList<>();
 
     public boolean validatePositions(String pShipType, Position pFirstPosition, Position pSecondPosition) {
         if (pFirstPosition.isEqual(pSecondPosition)) {
@@ -19,21 +15,12 @@ public class Player{
             System.out.println("The ship must be placed either vertically or horizontally");
             return false;
         }
-        //eher kommisch: wieso ned pFirstPosition.getDistance(pSecondPosition); du callt mer e method vomene objetkt (Position) wos gar ned wük git.
         else if (Position.getDistance(pFirstPosition, pSecondPosition) != Ship.getLength(pShipType.charAt(0))) {
             int shipLength = Ship.getLength(pShipType.charAt(0));
             System.out.println(String.format("The Ship must have a length of %d!", shipLength));
             return false;
         }
         else {
-            /*
-            for (Position aPos : occupiedFields) {
-                if (aPos.isEqual(pFirstPosition) || aPos.isEqual(pSecondPosition)) {
-                    System.out.println("There is already a ship placed on one of these fields");
-                    return false;
-                } 
-            }*/
-        
         return true;
         }
     }
@@ -44,16 +31,14 @@ public class Player{
                 "Patrolboat", "Patrolboat", "Patrolboat", "Patrolboat", };
 
         Scanner sc = new Scanner(System.in);
-        //TODO input wird falsch eingegeben: eigentlich A2,A5
 
         for (int i = 0; i < 10; i++) {
             System.out.println("\nPlease enter " + shipTypes[i] + " position. Length: " + Ship.getLength(shipTypes[i].charAt((0))) );
             boolean inputCheck = false;
-            Position startPosition = new Position(); //antipattern null, musste es zu 0,0 ändern
+            Position startPosition = new Position();
             Position endPosition = new Position();
             while (!inputCheck) {
                 try {
-                    // Wieso nicht Position.startPosition = new..
                     String userInput = sc.next();
                     if (userInput.charAt(2) != ',') {
                         throw new InputMismatchException();
@@ -87,20 +72,12 @@ public class Player{
                 }
 
             }
-
-            /*
-            for (Position pos : newShip.getPositions()) {
-                occupiedFields.add(pos);
-            } */
         }
 
     return oceanGrid;
 }
 
-    private ArrayList<Position> aPlayerCall = new ArrayList<>();
-
     public Position createBomb() {
-        //TODO check if position of bomb was already chosen
         Scanner sc = new Scanner(System.in);
         boolean inputCheck = false;
         Typewriter.main("\nEnter position of bomb");

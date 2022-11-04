@@ -1,15 +1,14 @@
-import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Com{
     TargetGrid targetGrid = new TargetGrid();
+    private ArrayList<Position> aComCalls = new ArrayList<>();
+
     public Ship createCarrier() {
         Random rand = new Random();
         Position startPos = new Position();
         Position endPos = new Position();
-        int count = 0;
 
         if (rand.nextBoolean()) { //horizontally
             startPos.setX(rand.nextInt(10));
@@ -127,7 +126,6 @@ public class Com{
         return targetGrid;
 
     }
-    private ArrayList<Position> aComCalls = new ArrayList<>();
 
     public Position createBombRandom(){
 

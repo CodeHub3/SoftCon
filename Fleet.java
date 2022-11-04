@@ -1,5 +1,3 @@
-import java.util.Scanner;
-import java.util.List;
 import java.util.ArrayList;
 
 public class Fleet {
@@ -36,7 +34,6 @@ public class Fleet {
     }
 
     public Ship getCorrespondingShip(Position pos) {
-        //TODO do it right
         try {
             for (Ship ship : aFleet) {
                 for (Position posInShip : ship.getPositions()) {

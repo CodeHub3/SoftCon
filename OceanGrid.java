@@ -1,8 +1,15 @@
-import java.util.ArrayList;
-
 public class OceanGrid implements Playground {
     Character[][] aDatastructure = new Character[10][10];
     private Fleet userFleet = new Fleet();
+    private boolean lastCallHit = false;
+
+    public OceanGrid () {
+        for (int col = 0; col < 10; col++) {
+            for (int row = 0; row < 10; row++) {
+                aDatastructure[col][row] = ' ';
+            }
+        }
+    }
 
     public void addToFleet(Ship pShip) {
         userFleet.addShip(pShip);
@@ -12,35 +19,12 @@ public class OceanGrid implements Playground {
         return userFleet.shipDoesNotOverlap(ship);
     }
 
-    /*public void addFleet(Fleet pFleet) {
-        for (Ship ship : pFleet.getFleet()) {
-            for(Position pos : ship.getPositions()){
-                aDatastructure[pos.getX()][pos.getY()] = ship.getType();
-            }
-        }
-    }*/
-    
-    public OceanGrid () {
-        for (int col = 0; col < 10; col++) {
-            for (int row = 0; row < 10; row++) {
-                aDatastructure[col][row] = ' ';
-            }
-        }
-    }
-    public void addShip(Ship pShip){
-        for(Position pos : pShip.getPositions()){
-            aDatastructure[pos.getX()][pos.getY()] = pShip.getType();
-        }        
+    public void addMiss(Position miss){
+        aDatastructure[miss.getX()][miss.getY()]= 'O';
     }
 
     public void addHit(Position hit){
-        //TODO
         aDatastructure[hit.getX()][hit.getY()]= 'X';
-    }
-
-    public void addMiss(Position miss){
-        //TODO
-        aDatastructure[miss.getX()][miss.getY()]= 'O';
     }
 
     public void revealShip(Ship pShip) {
@@ -50,10 +34,15 @@ public class OceanGrid implements Playground {
         }
     }
 
-    private boolean lastCallHit = false;
-    public boolean getLastCalHit(){
-        return lastCallHit;
+    public boolean isFleetDestroyed() {
+        for (Ship ship : userFleet.getFleet()) {
+            if (ship.getLifespan() > 0) {
+                return false;
+            }
+        }
+        return true;
     }
+   
     public void bombard(Position bomb) {
         if (userFleet.positionInFleet(bomb)) {
             Ship damagedShip = userFleet.getCorrespondingShip(bomb);
@@ -68,13 +57,14 @@ public class OceanGrid implements Playground {
         }
     }
 
-    public boolean isFleetDestroyed() {
-        for (Ship ship : userFleet.getFleet()) {
-            if (ship.getLifespan() > 0) {
-                return false;
-            }
-        }
-        return true;
+    public void addShip(Ship pShip){
+        for(Position pos : pShip.getPositions()){
+            aDatastructure[pos.getX()][pos.getY()] = pShip.getType();
+        }        
+    }
+    
+    public boolean getLastCalHit(){
+        return lastCallHit;
     }
     
     public void printOceanGrid() {
