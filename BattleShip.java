@@ -67,7 +67,7 @@ public class BattleShip {
                 System.out.println("  @@               @@     \n@@@@  @@@@@@@@@@@  @@@@   \n    @@@@@@@@@@@@@@@       \n    @@@  @@@@@@  @@       \n     @@@@@@@@@@@@@        \n       @@@ @ @@@          \n        @@@@@@@@          \n      @@@      @@         \n    @@@          @@@      \n");
                 Typewriter.main("       You lost!\n");
                 Typewriter.main("\nRevealing all ships of the opponent");
-                //add ... in slow
+
                 for (int i=0; i<4; i++) {                
                     try {
                     Thread.sleep(500);

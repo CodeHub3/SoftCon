@@ -47,12 +47,15 @@ public class Player{
                     startPosition = new Position(arrOfStr[0]);
                     endPosition = new Position(arrOfStr[1]);
                     
-                    if (!validatePositions(shipTypes[i], startPosition, endPosition)) {
+                    if(!validatePositions(shipTypes[i], startPosition, endPosition)) {
                         throw new IndexOutOfBoundsException();
                     }
                     inputCheck = true;
                 }
-                catch (Exception e) {
+                catch (IndexOutOfBoundsException e) {
+                    System.out.println("Enter a valid position! (e.g. A4,A6)");
+                }
+                catch (InputMismatchException e) {
                     System.out.println("Enter a valid position! (e.g. A4,A6)");
                 }
 
@@ -80,7 +83,7 @@ public class Player{
     public Position createBomb() {
         Scanner sc = new Scanner(System.in);
         boolean inputCheck = false;
-        Typewriter.main("\nEnter position of bomb");
+        Typewriter.main("\nEnter position of bomb\n");
         while (!inputCheck) {            
             try {
                 Position newUserBomb = new Position(sc.next());
