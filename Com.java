@@ -129,45 +129,53 @@ public class Com{
     }
     private ArrayList<Position> aComCalls = new ArrayList<>();
 
-    public Position createBomb(boolean lastCallHit){
+    public Position createBombRandom(){
 
         Random rand = new Random();
         Position bombPos = new Position();
         boolean inputCheck = false;
       
-        if(!lastCallHit){
-            while (!inputCheck) {
-                bombPos.setX(rand.nextInt(10));
-                bombPos.setY(rand.nextInt(10));
-                inputCheck = true;
-                for (Position comCall : aComCalls) {
-                    if (bombPos.isEqual(comCall)) {
-                        inputCheck = false;
-                        break;
-                    }
+        while (!inputCheck) {
+            bombPos.setX(rand.nextInt(10));
+            bombPos.setY(rand.nextInt(10));
+            inputCheck = true;
+            for (Position comCall : aComCalls) {
+                if (bombPos.isEqual(comCall)) {
+                    inputCheck = false;
+                    break;
                 }
             }
-            aComCalls.add(bombPos);
-            return bombPos;
         }
-        else{
-            while(!inputCheck){
-                for(int x=1; aComCalls.get(aComCalls.size()-1).getX()+x<10;x++){
-                    for(int y=0; aComCalls.get(aComCalls.size()-1).getY()+y<10;y++){
-                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX()+x);
-                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY()+y);
-                        for (Position comCall : aComCalls) {
-                            if (bombPos.isEqual(comCall)) {
-                                break;
-                            }
+        aComCalls.add(bombPos);
+        return bombPos;
+    }
+
+    public Position createBombAfterHit(){
+        Position bombPos = new Position();
+        boolean inputCheck = false;
+        while (!inputCheck){ 
+            for(int x=1; aComCalls.get(aComCalls.size()-1).getX()+x<10;x++){
+                for(int y=0; aComCalls.get(aComCalls.size()-1).getY()+y<10;y++){
+                    bombPos.setX(aComCalls.get(aComCalls.size()-1).getX()+x);
+                    bombPos.setY(aComCalls.get(aComCalls.size()-1).getY()+y);
+                    for (Position comCall : aComCalls) {
+                        if (bombPos.isEqual(comCall)) {
+                            inputCheck = false;
+                            break;
                         }
-                        inputCheck = true;
-                        break;}
-                    break;         
+                        else{
+                            inputCheck = true;
+                        }
+                    }
+                    break;
                 }
+                break;
             }
-            aComCalls.add(bombPos);
-            return bombPos;
+            if(!inputCheck){
+                return createBombRandom();
+            }
         }
+        aComCalls.add(bombPos);
+        return bombPos;
     }
 }
