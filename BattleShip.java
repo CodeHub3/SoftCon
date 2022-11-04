@@ -44,8 +44,8 @@ public class BattleShip {
                 finished = true;
                 break;
             }
-            //System.out.print("\nThe other player is making his move now");
-            Typewriter.main("The other player is making his move now");
+            System.out.print("\nThe other player is making his move now");
+            //Typewriter.main("The other player is making his move now");
             for (int i=0; i<4; i++) {                
                 try {
                 Thread.sleep(500);
