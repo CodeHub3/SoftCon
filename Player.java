@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException; //andere exception?
 
-public class Player implements Bombs {
+public class Player{
 
     OceanGrid oceanGrid = new OceanGrid();
 
@@ -46,7 +46,7 @@ public class Player implements Bombs {
         Scanner sc = new Scanner(System.in);
         //TODO input wird falsch eingegeben: eigentlich A2,A5
 
-        for (int i = 0; i < 2/*10*/; i++) {
+        for (int i = 0; i < 10; i++) {
             System.out.println("\nPlease enter " + shipTypes[i] + " position. Length: " + Ship.getLength(shipTypes[i].charAt((0))) );
             boolean inputCheck = false;
             Position startPosition = new Position(); //antipattern null, musste es zu 0,0 ändern
@@ -68,7 +68,7 @@ public class Player implements Bombs {
                     inputCheck = true;
                 }
                 catch (Exception e) {
-                    System.out.println("Enter a valid position!");
+                    System.out.println("Enter a valid position! (e.g. A4,A6)");
                 }
 
                 if (inputCheck) {
@@ -103,7 +103,7 @@ public class Player implements Bombs {
         //TODO check if position of bomb was already chosen
         Scanner sc = new Scanner(System.in);
         boolean inputCheck = false;
-        System.out.println("\nEnter position of bomb");
+        Typewriter.main("\nEnter position of bomb");
         while (!inputCheck) {            
             try {
                 Position newUserBomb = new Position(sc.next());
@@ -120,7 +120,7 @@ public class Player implements Bombs {
                 System.out.println("You already made that call, try again!");
             }
             catch (Exception e) {
-                System.out.println("Not a valid position, try again!");
+                System.out.println("Not a valid position, try again! (e.g. B7)");
             }
             
         }

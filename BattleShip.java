@@ -44,8 +44,8 @@ public class BattleShip {
                 finished = true;
                 break;
             }
-            //System.out.print("\nThe other player is making his move now");
-            Typewriter.main("The other player is making his move now");
+            System.out.print("\nThe other player is making his move now");
+            //Typewriter.main("The other player is making his move now");
             for (int i=0; i<4; i++) {                
                 try {
                 Thread.sleep(500);
@@ -55,7 +55,12 @@ public class BattleShip {
                 }
                 if (i!=3) {System.out.print(".");}
                 }
-            ocean.bombard(com.createBomb());
+            if (ocean.getLastCalHit()==true){
+                ocean.bombard(com.createBombAfterHit());
+            }
+            else{
+                ocean.bombard(com.createBombRandom());
+            }
             grids.printGrids();
             if (ocean.isFleetDestroyed()) {
                 Typewriter.main("\n       Game Over\n\n");

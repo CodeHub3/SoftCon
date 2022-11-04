@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Com implements Bombs {
+public class Com{
     TargetGrid targetGrid = new TargetGrid();
     public Ship createCarrier() {
         Random rand = new Random();
@@ -129,7 +129,7 @@ public class Com implements Bombs {
     }
     private ArrayList<Position> aComCalls = new ArrayList<>();
 
-    public Position createBomb(){
+    public Position createBombRandom(){
 
         Random rand = new Random();
         Position bombPos = new Position();
@@ -146,8 +146,70 @@ public class Com implements Bombs {
                 }
             }
         }
-        
         aComCalls.add(bombPos);
         return bombPos;
     }
-}
+
+    public Position createBombAfterHit(){
+        Position bombPos = new Position();
+        boolean inputCheck = false;
+        Random rand = new Random();
+        int counter = 0;
+        while (!inputCheck) {
+            if (rand.nextBoolean()) {
+                //horizontal
+                if (rand.nextBoolean()) {
+                    //links
+                    if (aComCalls.get(aComCalls.size()-1).getX() >= 1) {
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX()-1);
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY());
+                        inputCheck = true;
+                    }
+                    }
+                else {
+                    //rechts
+                    if (aComCalls.get(aComCalls.size()-1).getX() <= 8) {
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX()+1);
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY());
+                        inputCheck = true;
+                    }
+                }
+            }
+            else {
+                //vertikal
+                if (rand.nextBoolean()) {
+                    //hoch
+                    if (aComCalls.get(aComCalls.size()-1).getY() >= 1) {
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX());
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY()-1);
+                        inputCheck = true;
+                    }
+                }
+                else {
+                    //runter
+                    if (aComCalls.get(aComCalls.size()-1).getY() <= 8) {
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX());
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY()+1);
+                        inputCheck = true;
+                    }
+                }
+
+            }
+            if (inputCheck) {
+                for (Position comCall : aComCalls) {
+                    if (bombPos.isEqual(comCall)) {
+                        inputCheck = false;
+                        break;
+                    }
+                }   
+            }
+            if (counter == 20) {
+                return createBombRandom();
+            }
+            counter++;
+        }
+        aComCalls.add(bombPos);
+        return bombPos;
+    }
+}  
+
