@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Com implements Bombs {
+public class Com{
     TargetGrid targetGrid = new TargetGrid();
     public Ship createCarrier() {
         Random rand = new Random();
@@ -129,25 +129,45 @@ public class Com implements Bombs {
     }
     private ArrayList<Position> aComCalls = new ArrayList<>();
 
-    public Position createBomb(){
+    public Position createBomb(boolean lastCallHit){
 
         Random rand = new Random();
         Position bombPos = new Position();
         boolean inputCheck = false;
       
-        while (!inputCheck) {
-            bombPos.setX(rand.nextInt(10));
-            bombPos.setY(rand.nextInt(10));
-            inputCheck = true;
-            for (Position comCall : aComCalls) {
-                if (bombPos.isEqual(comCall)) {
-                    inputCheck = false;
-                    break;
+        if(!lastCallHit){
+            while (!inputCheck) {
+                bombPos.setX(rand.nextInt(10));
+                bombPos.setY(rand.nextInt(10));
+                inputCheck = true;
+                for (Position comCall : aComCalls) {
+                    if (bombPos.isEqual(comCall)) {
+                        inputCheck = false;
+                        break;
+                    }
                 }
             }
+            aComCalls.add(bombPos);
+            return bombPos;
         }
-        
-        aComCalls.add(bombPos);
-        return bombPos;
+        else{
+            while(!inputCheck){
+                for(int x=1; aComCalls.get(aComCalls.size()-1).getX()+x<10;x++){
+                    for(int y=0; aComCalls.get(aComCalls.size()-1).getY()+y<10;y++){
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX()+x);
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY()+y);
+                        for (Position comCall : aComCalls) {
+                            if (bombPos.isEqual(comCall)) {
+                                break;
+                            }
+                        }
+                        inputCheck = true;
+                        break;}
+                    break;         
+                }
+            }
+            aComCalls.add(bombPos);
+            return bombPos;
+        }
     }
 }

@@ -50,15 +50,21 @@ public class OceanGrid implements Playground {
         }
     }
 
+    private boolean lastCallHit = false;
+    public boolean getLastCalHit(){
+        return lastCallHit;
+    }
     public void bombard(Position bomb) {
         if (userFleet.positionInFleet(bomb)) {
             Ship damagedShip = userFleet.getCorrespondingShip(bomb);
             damagedShip.reduceLifespan();
             //in ocean grid we display only X's and O's
             addHit(bomb);
+            lastCallHit = true;
         }
         else {
             addMiss(bomb);
+            lastCallHit = false;
         }
     }
 

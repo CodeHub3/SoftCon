@@ -55,7 +55,12 @@ public class BattleShip {
                 }
                 if (i!=3) {System.out.print(".");}
                 }
-            ocean.bombard(com.createBomb());
+            if (ocean.getLastCalHit()==true){
+                ocean.bombard(com.createBomb(true));
+            }
+            else{
+                ocean.bombard(com.createBomb(false));
+            }
             grids.printGrids();
             if (ocean.isFleetDestroyed()) {
                 Typewriter.main("\n       Game Over\n\n");
