@@ -39,7 +39,7 @@ public class Player{
             Position endPosition = new Position();
             while (!inputCheck) {
                 try {
-                    String userInput = sc.next();
+                    String userInput = sc.nextLine();
                     if (userInput.charAt(2) != ',') {
                         throw new InputMismatchException();
                     }
@@ -52,11 +52,8 @@ public class Player{
                     }
                     inputCheck = true;
                 }
-                catch (IndexOutOfBoundsException e) {
-                    System.out.println("Enter a valid position! (e.g. A4,A6)");
-                }
-                catch (InputMismatchException e) {
-                    System.out.println("Enter a valid position! (e.g. A4,A6)");
+                catch (Exception e) {
+                    System.out.println("Enter a valid position! (e.g. A2,A4)");
                 }
 
                 if (inputCheck) {
