@@ -153,29 +153,63 @@ public class Com{
     public Position createBombAfterHit(){
         Position bombPos = new Position();
         boolean inputCheck = false;
-        while (!inputCheck){ 
-            for(int x=1; aComCalls.get(aComCalls.size()-1).getX()+x<10;x++){
-                for(int y=0; aComCalls.get(aComCalls.size()-1).getY()+y<10;y++){
-                    bombPos.setX(aComCalls.get(aComCalls.size()-1).getX()+x);
-                    bombPos.setY(aComCalls.get(aComCalls.size()-1).getY()+y);
-                    for (Position comCall : aComCalls) {
-                        if (bombPos.isEqual(comCall)) {
-                            inputCheck = false;
-                            break;
-                        }
-                        else{
-                            inputCheck = true;
-                        }
+        Random rand = new Random();
+        int counter = 0;
+        while (!inputCheck) {
+            if (rand.nextBoolean()) {
+                //horizontal
+                if (rand.nextBoolean()) {
+                    //links
+                    if (aComCalls.get(aComCalls.size()-1).getX() >= 1) {
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX()-1);
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY());
+                        inputCheck = true;
                     }
-                    break;
+                    }
+                else {
+                    //rechts
+                    if (aComCalls.get(aComCalls.size()-1).getX() <= 8) {
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX()+1);
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY());
+                        inputCheck = true;
+                    }
                 }
-                break;
             }
-            if(!inputCheck){
+            else {
+                //vertikal
+                if (rand.nextBoolean()) {
+                    //hoch
+                    if (aComCalls.get(aComCalls.size()-1).getY() >= 1) {
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX());
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY()-1);
+                        inputCheck = true;
+                    }
+                }
+                else {
+                    //runter
+                    if (aComCalls.get(aComCalls.size()-1).getY() <= 8) {
+                        bombPos.setX(aComCalls.get(aComCalls.size()-1).getX());
+                        bombPos.setY(aComCalls.get(aComCalls.size()-1).getY()+1);
+                        inputCheck = true;
+                    }
+                }
+
+            }
+            if (inputCheck) {
+                for (Position comCall : aComCalls) {
+                    if (bombPos.isEqual(comCall)) {
+                        inputCheck = false;
+                        break;
+                    }
+                }   
+            }
+            if (counter == 20) {
                 return createBombRandom();
             }
+            counter++;
         }
         aComCalls.add(bombPos);
         return bombPos;
     }
-}
+}  
+
