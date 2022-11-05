@@ -73,7 +73,7 @@ public class Player{
 
             }
         }
-
+    sc.close();
     return oceanGrid;
 }
 
@@ -101,6 +101,7 @@ public class Player{
             }
             
         }
+        sc.close();
         return aPlayerCall.get(aPlayerCall.size()-1);
     }
 }
