@@ -73,9 +73,8 @@ public class Player{
 
             }
         }
-    sc.close();
-    return oceanGrid;
-}
+        return oceanGrid;
+    }
 
     public Position createBomb() {
         Scanner sc = new Scanner(System.in);
@@ -101,7 +100,6 @@ public class Player{
             }
             
         }
-        sc.close();
         return aPlayerCall.get(aPlayerCall.size()-1);
     }
 }
