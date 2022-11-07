@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 public class Player{
     OceanGrid oceanGrid = new OceanGrid();
     private ArrayList<Position> aPlayerCall = new ArrayList<>();
+    private static Scanner sc = new Scanner(System.in);
 
     public boolean validatePositions(String pShipType, Position pFirstPosition, Position pSecondPosition) {
         if (pFirstPosition.isEqual(pSecondPosition)) {
@@ -30,7 +31,7 @@ public class Player{
         String[] shipTypes = {"Carrier", "Battleship", "Battleship", "Submarine", "Submarine", "Submarine",
                 "Patrolboat", "Patrolboat", "Patrolboat", "Patrolboat", };
 
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
 
         for (int i = 0; i < 10; i++) {
             System.out.println("\nPlease enter " + shipTypes[i] + " position. Length: " + Ship.getLength(shipTypes[i].charAt((0))) );
@@ -77,7 +78,7 @@ public class Player{
     }
 
     public Position createBomb() {
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         boolean inputCheck = false;
         Typewriter.main("\nEnter position of bomb\n");
         while (!inputCheck) {            
