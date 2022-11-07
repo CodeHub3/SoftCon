@@ -82,7 +82,7 @@ public class Player{
         Typewriter.main("\nEnter position of bomb\n");
         while (!inputCheck) {            
             try {
-                Position newUserBomb = new Position(sc.next());
+                Position newUserBomb = new Position(sc.nextLine());
                 
                 for (Position playerCall : aPlayerCall) {
                     if (playerCall.isEqual(newUserBomb)) {
